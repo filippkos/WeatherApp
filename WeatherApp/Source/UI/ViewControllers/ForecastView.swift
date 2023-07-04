@@ -12,6 +12,10 @@ class ForecastView: UIView {
     // MARK: -
     // MARK: Outlets
     
+    @IBOutlet var cityNameLabel: UILabel!
     @IBOutlet var tableView: UITableView!
 
+    func configure(city: String) {
+        self.cityNameLabel.text = city
+    }
 }
