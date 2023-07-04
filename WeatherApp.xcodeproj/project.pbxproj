@@ -18,6 +18,13 @@
 		22A4D0972A41ADDD00A06E4F /* ForecastTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22A4D0952A41ADDD00A06E4F /* ForecastTableViewCell.xib */; };
 		22A4D09B2A41AE5A00A06E4F /* UViewController+ViewCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4D09A2A41AE5A00A06E4F /* UViewController+ViewCast.swift */; };
 		22A4D09D2A41AE7F00A06E4F /* TableView+ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4D09C2A41AE7F00A06E4F /* TableView+ReusableCell.swift */; };
+		22A4D0A02A42E94F00A06E4F /* ForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4D09F2A42E94F00A06E4F /* ForecastModel.swift */; };
+		22A4D0A42A42EE5E00A06E4F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4D0A32A42EE5E00A06E4F /* NetworkManager.swift */; };
+		22A4D0AA2A431EF400A06E4F /* NetworkSessionProcessableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4D0A92A431EF400A06E4F /* NetworkSessionProcessableProtocol.swift */; };
+		22A4D0AC2A431F2400A06E4F /* NetworkRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4D0AB2A431F2400A06E4F /* NetworkRequestModel.swift */; };
+		22A4D0AF2A4324F000A06E4F /* ServerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4D0AE2A4324F000A06E4F /* ServerConstants.swift */; };
+		22A4D0B12A4325E600A06E4F /* F.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4D0B02A4325E600A06E4F /* F.swift */; };
+		22A4D0B32A4C73F800A06E4F /* Array+SplitByIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4D0B22A4C73F800A06E4F /* Array+SplitByIndex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +41,13 @@
 		22A4D0952A41ADDD00A06E4F /* ForecastTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastTableViewCell.xib; sourceTree = "<group>"; };
 		22A4D09A2A41AE5A00A06E4F /* UViewController+ViewCast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UViewController+ViewCast.swift"; sourceTree = "<group>"; };
 		22A4D09C2A41AE7F00A06E4F /* TableView+ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+ReusableCell.swift"; sourceTree = "<group>"; };
+		22A4D09F2A42E94F00A06E4F /* ForecastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastModel.swift; sourceTree = "<group>"; };
+		22A4D0A32A42EE5E00A06E4F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		22A4D0A92A431EF400A06E4F /* NetworkSessionProcessableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionProcessableProtocol.swift; sourceTree = "<group>"; };
+		22A4D0AB2A431F2400A06E4F /* NetworkRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestModel.swift; sourceTree = "<group>"; };
+		22A4D0AE2A4324F000A06E4F /* ServerConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerConstants.swift; sourceTree = "<group>"; };
+		22A4D0B02A4325E600A06E4F /* F.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F.swift; sourceTree = "<group>"; };
+		22A4D0B22A4C73F800A06E4F /* Array+SplitByIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+SplitByIndex.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +80,7 @@
 		22A4D06E2A40802B00A06E4F /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				22A4D0A12A42E9E500A06E4F /* Services */,
 				22A4D0842A40825800A06E4F /* Coordinators */,
 				22A4D0832A40825000A06E4F /* Source */,
 				22A4D06F2A40802B00A06E4F /* AppDelegate.swift */,
@@ -79,6 +94,7 @@
 		22A4D0832A40825000A06E4F /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				22A4D09E2A42E91300A06E4F /* Models */,
 				22A4D0982A41AE1E00A06E4F /* F */,
 				22A4D0872A41AA5400A06E4F /* UI */,
 			);
@@ -124,7 +140,9 @@
 		22A4D0982A41AE1E00A06E4F /* F */ = {
 			isa = PBXGroup;
 			children = (
+				22A4D0A82A431ED500A06E4F /* Protocols */,
 				22A4D0992A41AE3700A06E4F /* Extensions */,
+				22A4D0B02A4325E600A06E4F /* F.swift */,
 			);
 			path = F;
 			sourceTree = "<group>";
@@ -134,8 +152,51 @@
 			children = (
 				22A4D09A2A41AE5A00A06E4F /* UViewController+ViewCast.swift */,
 				22A4D09C2A41AE7F00A06E4F /* TableView+ReusableCell.swift */,
+				22A4D0B22A4C73F800A06E4F /* Array+SplitByIndex.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		22A4D09E2A42E91300A06E4F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				22A4D09F2A42E94F00A06E4F /* ForecastModel.swift */,
+				22A4D0AB2A431F2400A06E4F /* NetworkRequestModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		22A4D0A12A42E9E500A06E4F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				22A4D0A22A42E9EE00A06E4F /* Networking */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		22A4D0A22A42E9EE00A06E4F /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				22A4D0AD2A4324DE00A06E4F /* Service */,
+				22A4D0A32A42EE5E00A06E4F /* NetworkManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		22A4D0A82A431ED500A06E4F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				22A4D0A92A431EF400A06E4F /* NetworkSessionProcessableProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		22A4D0AD2A4324DE00A06E4F /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				22A4D0AE2A4324F000A06E4F /* ServerConstants.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,12 +271,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22A4D0AC2A431F2400A06E4F /* NetworkRequestModel.swift in Sources */,
+				22A4D0A42A42EE5E00A06E4F /* NetworkManager.swift in Sources */,
+				22A4D0AA2A431EF400A06E4F /* NetworkSessionProcessableProtocol.swift in Sources */,
 				22A4D0862A40827800A06E4F /* Coordinator.swift in Sources */,
 				22A4D0962A41ADDD00A06E4F /* ForecastTableViewCell.swift in Sources */,
 				22A4D0702A40802B00A06E4F /* AppDelegate.swift in Sources */,
 				22A4D09D2A41AE7F00A06E4F /* TableView+ReusableCell.swift in Sources */,
 				22A4D08F2A41AC0300A06E4F /* ForecastViewController.swift in Sources */,
+				22A4D0AF2A4324F000A06E4F /* ServerConstants.swift in Sources */,
 				22A4D09B2A41AE5A00A06E4F /* UViewController+ViewCast.swift in Sources */,
+				22A4D0B12A4325E600A06E4F /* F.swift in Sources */,
+				22A4D0A02A42E94F00A06E4F /* ForecastModel.swift in Sources */,
+				22A4D0B32A4C73F800A06E4F /* Array+SplitByIndex.swift in Sources */,
 				22A4D0922A41AC3300A06E4F /* ForecastView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
