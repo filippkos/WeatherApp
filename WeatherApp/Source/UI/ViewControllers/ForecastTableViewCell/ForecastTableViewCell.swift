@@ -26,11 +26,11 @@ class ForecastTableViewCell: UITableViewCell {
     func configure(model: List) {
         self.timeLabel.text = self.getTime(time: TimeInterval(model.dt))
         self.tempTitleLabel.text = "Temperature"
-        self.tempValueLabel.text = self.convert(temp: model.main.temp)
+        self.tempValueLabel.text = "\(self.convert(temp: model.main.temp))°"
         self.minTempTitleLabel.text = "Min"
-        self.minTempValueLabel.text = self.convert(temp: model.main.tempMin)
+        self.minTempValueLabel.text = "\(self.convert(temp: model.main.tempMin))°"
         self.maxTempTitleLabel.text = "Max"
-        self.maxTempValueLabel.text = self.convert(temp: model.main.tempMax)
+        self.maxTempValueLabel.text = "\(self.convert(temp: model.main.tempMax))°"
     }
     
     func getTime(time: TimeInterval) -> String {

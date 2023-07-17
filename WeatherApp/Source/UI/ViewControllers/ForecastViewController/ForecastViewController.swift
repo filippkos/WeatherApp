@@ -22,6 +22,8 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
         self.rootView?.tableView.dataSource = self
         self.rootView?.tableView.delegate = self
         self.rootView?.tableView.register(cellClass: ForecastTableViewCell.self)
+        self.rootView?.tableView.register(headerFooterClass: ForecastTableViewHeaderFooterView.self)
+        
         self.forecast()
     }
     
@@ -49,7 +51,7 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
                 self?.city = model.city.name
                 DispatchQueue.main.async {
                     
-                    self?.rootView?.configure(city: self?.city ?? "")
+                    self?.rootView?.configure(model: model)
                     self?.rootView?.tableView?.reloadData()
                 }
             case .failure(let error):
@@ -71,6 +73,10 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
         return localDate
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        self.rootView?.tableView.dequeueReusableHeaderFooterView(withHeaderFooterClass: ForecastTableViewHeaderFooterView.self)
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         self.lists.count
     }
@@ -80,7 +86,7 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(cellClass: ForecastTableViewCell.self)
+        let cell = tableView.dequeueReusableCell(withCellClass: ForecastTableViewCell.self, for: indexPath)
         cell.configure(model: self.lists[indexPath.section][indexPath.row])
         
         return cell
