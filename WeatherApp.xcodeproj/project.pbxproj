@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		157020BF1CE3D248C6D2E389 /* Pods_WeatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77CCB734EB4AD5C59853FE61 /* Pods_WeatherApp.framework */; };
+		228127D42A5D9DD400C3ECFF /* ForecastTableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228127D32A5D9DD400C3ECFF /* ForecastTableViewHeaderFooterView.swift */; };
+		228127D62A5E871400C3ECFF /* TableViewRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228127D52A5E871400C3ECFF /* TableViewRegistrar.swift */; };
+		228127DE2A6151A500C3ECFF /* swiftgen-config.yml in Resources */ = {isa = PBXBuildFile; fileRef = 228127DC2A6151A500C3ECFF /* swiftgen-config.yml */; };
+		228127DF2A6151A500C3ECFF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 228127DD2A6151A500C3ECFF /* Localizable.strings */; };
+		228127E22A61591600C3ECFF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 228127E12A61591600C3ECFF /* Images.xcassets */; };
+		228127E42A61592800C3ECFF /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 228127E32A61592800C3ECFF /* Colors.xcassets */; };
 		22A4D0702A40802B00A06E4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4D06F2A40802B00A06E4F /* AppDelegate.swift */; };
 		22A4D0792A40802B00A06E4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22A4D0782A40802B00A06E4F /* Assets.xcassets */; };
 		22A4D07C2A40802B00A06E4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22A4D07A2A40802B00A06E4F /* LaunchScreen.storyboard */; };
@@ -29,6 +35,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		228127D32A5D9DD400C3ECFF /* ForecastTableViewHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewHeaderFooterView.swift; sourceTree = "<group>"; };
+		228127D52A5E871400C3ECFF /* TableViewRegistrar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewRegistrar.swift; sourceTree = "<group>"; };
+		228127DC2A6151A500C3ECFF /* swiftgen-config.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = "swiftgen-config.yml"; sourceTree = "<group>"; };
+		228127DD2A6151A500C3ECFF /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		228127E12A61591600C3ECFF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		228127E32A61592800C3ECFF /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		228127E52A61759700C3ECFF /* SFPRODISPLAYSEMIBOLDITALIC.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYSEMIBOLDITALIC.OTF; sourceTree = "<group>"; };
+		228127E62A61759700C3ECFF /* SFPRODISPLAYTHINITALIC.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYTHINITALIC.OTF; sourceTree = "<group>"; };
+		228127E72A61759700C3ECFF /* SFPRODISPLAYMEDIUM.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYMEDIUM.OTF; sourceTree = "<group>"; };
+		228127E82A61759700C3ECFF /* SFPRODISPLAYBOLD.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYBOLD.OTF; sourceTree = "<group>"; };
+		228127E92A61759700C3ECFF /* SFPRODISPLAYULTRALIGHTITALIC.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYULTRALIGHTITALIC.OTF; sourceTree = "<group>"; };
+		228127EA2A61759700C3ECFF /* SFPRODISPLAYBLACKITALIC.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYBLACKITALIC.OTF; sourceTree = "<group>"; };
+		228127EB2A61759700C3ECFF /* SFPRODISPLAYREGULAR.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYREGULAR.OTF; sourceTree = "<group>"; };
+		228127EC2A61759700C3ECFF /* SFPRODISPLAYHEAVYITALIC.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYHEAVYITALIC.OTF; sourceTree = "<group>"; };
+		228127ED2A61759700C3ECFF /* SFPRODISPLAYLIGHTITALIC.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYLIGHTITALIC.OTF; sourceTree = "<group>"; };
 		22A4D06C2A40802B00A06E4F /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22A4D06F2A40802B00A06E4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22A4D0782A40802B00A06E4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -66,6 +87,68 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		228127D12A5D9D7200C3ECFF /* ForecastViewController */ = {
+			isa = PBXGroup;
+			children = (
+				22A4D08D2A41AC0300A06E4F /* ForecastViewController.swift */,
+				22A4D0912A41AC3300A06E4F /* ForecastView.swift */,
+				22A4D08E2A41AC0300A06E4F /* ForecastViewController.xib */,
+			);
+			path = ForecastViewController;
+			sourceTree = "<group>";
+		};
+		228127D22A5D9D8B00C3ECFF /* ForecastTableVIewHeaderFooterView */ = {
+			isa = PBXGroup;
+			children = (
+				228127D32A5D9DD400C3ECFF /* ForecastTableViewHeaderFooterView.swift */,
+			);
+			path = ForecastTableVIewHeaderFooterView;
+			sourceTree = "<group>";
+		};
+		228127D72A614A9800C3ECFF /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				228127D82A614AA600C3ECFF /* Resource */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		228127D82A614AA600C3ECFF /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				228127E02A61589B00C3ECFF /* Fonts */,
+				228127DD2A6151A500C3ECFF /* Localizable.strings */,
+				228127DC2A6151A500C3ECFF /* swiftgen-config.yml */,
+				228127DA2A614AC200C3ECFF /* Generated */,
+				228127E12A61591600C3ECFF /* Images.xcassets */,
+				228127E32A61592800C3ECFF /* Colors.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		228127DA2A614AC200C3ECFF /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		228127E02A61589B00C3ECFF /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				228127EA2A61759700C3ECFF /* SFPRODISPLAYBLACKITALIC.OTF */,
+				228127E82A61759700C3ECFF /* SFPRODISPLAYBOLD.OTF */,
+				228127EC2A61759700C3ECFF /* SFPRODISPLAYHEAVYITALIC.OTF */,
+				228127ED2A61759700C3ECFF /* SFPRODISPLAYLIGHTITALIC.OTF */,
+				228127E72A61759700C3ECFF /* SFPRODISPLAYMEDIUM.OTF */,
+				228127EB2A61759700C3ECFF /* SFPRODISPLAYREGULAR.OTF */,
+				228127E52A61759700C3ECFF /* SFPRODISPLAYSEMIBOLDITALIC.OTF */,
+				228127E62A61759700C3ECFF /* SFPRODISPLAYTHINITALIC.OTF */,
+				228127E92A61759700C3ECFF /* SFPRODISPLAYULTRALIGHTITALIC.OTF */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		22A4D0632A40802B00A06E4F = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +170,7 @@
 		22A4D06E2A40802B00A06E4F /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				228127D72A614A9800C3ECFF /* Libs */,
 				22A4D0A12A42E9E500A06E4F /* Services */,
 				22A4D0842A40825800A06E4F /* Coordinators */,
 				22A4D0832A40825000A06E4F /* Source */,
@@ -127,10 +211,9 @@
 		22A4D0882A41AA7700A06E4F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				228127D22A5D9D8B00C3ECFF /* ForecastTableVIewHeaderFooterView */,
 				22A4D0932A41ADB300A06E4F /* ForecastTableViewCell */,
-				22A4D08D2A41AC0300A06E4F /* ForecastViewController.swift */,
-				22A4D0912A41AC3300A06E4F /* ForecastView.swift */,
-				22A4D08E2A41AC0300A06E4F /* ForecastViewController.xib */,
+				228127D12A5D9D7200C3ECFF /* ForecastViewController */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -160,6 +243,7 @@
 				22A4D09A2A41AE5A00A06E4F /* UViewController+ViewCast.swift */,
 				22A4D09C2A41AE7F00A06E4F /* TableView+ReusableCell.swift */,
 				22A4D0B22A4C73F800A06E4F /* Array+SplitByIndex.swift */,
+				228127D52A5E871400C3ECFF /* TableViewRegistrar.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -220,7 +304,6 @@
 				A71D7F53CE3E8B72C624EE5C /* Pods-WeatherApp.debug.xcconfig */,
 				B5C017E8FE04DD83C6653CA2 /* Pods-WeatherApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -232,6 +315,7 @@
 			buildConfigurationList = 22A4D0802A40802B00A06E4F /* Build configuration list for PBXNativeTarget "WeatherApp" */;
 			buildPhases = (
 				7CC328D1638FE562E464EA98 /* [CP] Check Pods Manifest.lock */,
+				228127DB2A61503700C3ECFF /* SwiftGen */,
 				22A4D0682A40802B00A06E4F /* Sources */,
 				22A4D0692A40802B00A06E4F /* Frameworks */,
 				22A4D06A2A40802B00A06E4F /* Resources */,
@@ -284,6 +368,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				228127DE2A6151A500C3ECFF /* swiftgen-config.yml in Resources */,
+				228127DF2A6151A500C3ECFF /* Localizable.strings in Resources */,
+				228127E22A61591600C3ECFF /* Images.xcassets in Resources */,
+				228127E42A61592800C3ECFF /* Colors.xcassets in Resources */,
 				22A4D0972A41ADDD00A06E4F /* ForecastTableViewCell.xib in Resources */,
 				22A4D07C2A40802B00A06E4F /* LaunchScreen.storyboard in Resources */,
 				22A4D0902A41AC0300A06E4F /* ForecastViewController.xib in Resources */,
@@ -294,6 +382,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		228127DB2A61503700C3ECFF /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/SwiftGen/bin/swiftgen\" config run --config \"$SRCROOT/WeatherApp/Libs/Resource/swiftgen-config.yml\"\n\n";
+		};
 		7CC328D1638FE562E464EA98 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -352,7 +459,9 @@
 				22A4D09B2A41AE5A00A06E4F /* UViewController+ViewCast.swift in Sources */,
 				22A4D0B12A4325E600A06E4F /* F.swift in Sources */,
 				22A4D0A02A42E94F00A06E4F /* ForecastModel.swift in Sources */,
+				228127D42A5D9DD400C3ECFF /* ForecastTableViewHeaderFooterView.swift in Sources */,
 				22A4D0B32A4C73F800A06E4F /* Array+SplitByIndex.swift in Sources */,
+				228127D62A5E871400C3ECFF /* TableViewRegistrar.swift in Sources */,
 				22A4D0922A41AC3300A06E4F /* ForecastView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
