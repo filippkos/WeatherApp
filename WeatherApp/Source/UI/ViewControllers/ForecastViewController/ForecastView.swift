@@ -23,4 +23,12 @@ class ForecastView: UIView {
         self.temperatureLabel.text = "+25°"
         self.weatherLabel.text = model.list.first?.weather.first?.main.rawValue
     }
+    
+    func changeLabels() {
+        UIView.animate(withDuration: 0.5) {
+            self.temperatureLabel.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+       //     self.temperatureLabel.transform = CGAffineTransform(translationX: 10, y: 50)
+            self.temperatureLabel.transform = CGAffineTransform(rotationAngle: 0)
+         }
+    }
 }

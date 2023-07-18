@@ -50,7 +50,6 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
                 self?.lists = model.grouped
                 self?.city = model.city.name
                 DispatchQueue.main.async {
-                    
                     self?.rootView?.configure(model: model)
                     self?.rootView?.tableView?.reloadData()
                 }
@@ -90,5 +89,9 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.configure(model: self.lists[indexPath.section][indexPath.row])
         
         return cell
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.rootView?.changeLabels()
     }
 }
