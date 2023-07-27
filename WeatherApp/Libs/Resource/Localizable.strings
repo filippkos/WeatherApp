@@ -7,5 +7,8 @@
 */
 
 // MARK: -
-// MARK: ForecastViewController
+// MARK: ForecastTableViewCell
 
+"forecast_table_cell.temperature" = "Temperature";
+"forecast_table_cell.min" = "Min";
+"forecast_table_cell.max" = "Max";

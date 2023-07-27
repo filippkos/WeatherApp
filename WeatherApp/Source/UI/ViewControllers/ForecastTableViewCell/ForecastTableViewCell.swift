@@ -7,7 +7,12 @@
 
 import UIKit
 
-class ForecastTableViewCell: UITableViewCell {
+final class ForecastTableViewCell: UITableViewCell {
+    
+    // MARK: -
+    // MARK: Localization
+    
+    typealias loc = L10n.ForecastTableCell
     
     // MARK: -
     // MARK: Outlets
@@ -23,27 +28,19 @@ class ForecastTableViewCell: UITableViewCell {
     // MARK: -
     // MARK: Public
     
-    func configure(model: List) {
+    func configure(model: Period) {
         self.timeLabel.text = self.getTime(time: TimeInterval(model.dt))
-        self.tempTitleLabel.text = "Temperature"
-        self.tempValueLabel.text = "\(self.convert(temp: model.main.temp))°"
-        self.minTempTitleLabel.text = "Min"
-        self.minTempValueLabel.text = "\(self.convert(temp: model.main.tempMin))°"
-        self.maxTempTitleLabel.text = "Max"
-        self.maxTempValueLabel.text = "\(self.convert(temp: model.main.tempMax))°"
+        self.tempTitleLabel.text = loc.temperature
+        self.tempValueLabel.text = TemperatureConverter.stringCelsius(from: model.main.temp)
+        self.minTempTitleLabel.text = loc.min
+        self.minTempValueLabel.text = TemperatureConverter.stringCelsius(from: model.main.tempMin)
+        self.maxTempTitleLabel.text = loc.max
+        self.maxTempValueLabel.text = TemperatureConverter.stringCelsius(from: model.main.tempMax)
     }
     
     func getTime(time: TimeInterval) -> String {
         let date = NSDate(timeIntervalSince1970: time)
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = DateFormatter.Style.medium //Set date style
-        dateFormatter.timeZone = .current
-        let localDate = dateFormatter.string(from: date as Date)
         
-        return localDate
-    }
-    
-    func convert(temp: Double) -> String {
-        return "+\(Int(temp - 273).description)"
+        return DateFormatter.timeFormatter.string(from: date as Date)
     }
 }

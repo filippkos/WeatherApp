@@ -17,11 +17,13 @@ class ForecastView: UIView {
     @IBOutlet var weatherLabel: UILabel!
     @IBOutlet var minMaxLabel: UILabel!
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var hourlyForecastView: HourlyForecastView!
 
-    func configure(model: ForecastModel) {
+    func configureDefault(model: ForecastModel, currentDay: Int) {
         self.cityNameLabel.text = model.city.name
-        self.temperatureLabel.text = "+25°"
-        self.weatherLabel.text = model.list.first?.weather.first?.main.rawValue
+        self.temperatureLabel.text = TemperatureConverter.stringCelsius(from: model.list.first?.main.temp ?? 0)
+        self.weatherLabel.text = model.list.first?.weather.first?.main.rawValue ?? ""
+        self.hourlyForecastView.setup(model: model)
     }
     
     func changeLabels() {

@@ -52,12 +52,13 @@
                         </label>
                     </subviews>
                 </stackView>
-                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UG2-TZ-Ccz">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mCg-Dp-goi" customClass="HourlyForecastView" customModule="WeatherApp" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="279.33333333333331" width="393" height="146"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="146" id="bQd-fR-kfe"/>
+                        <constraint firstAttribute="height" constant="146" id="thI-K2-UEg"/>
                     </constraints>
-                </stackView>
+                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZKF-Jw-fl5">
                     <rect key="frame" x="0.0" y="425.33333333333326" width="393" height="392.66666666666674"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -66,19 +67,20 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="mCg-Dp-goi" firstAttribute="top" secondItem="CuN-8r-1MD" secondAttribute="bottom" id="3sw-zF-ZQQ"/>
                 <constraint firstItem="CuN-8r-1MD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Ae3-iM-lcj"/>
-                <constraint firstItem="UG2-TZ-Ccz" firstAttribute="top" secondItem="CuN-8r-1MD" secondAttribute="bottom" id="Eio-zk-YVH"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="UG2-TZ-Ccz" secondAttribute="trailing" id="Ft8-Nq-FrC"/>
+                <constraint firstItem="mCg-Dp-goi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Cz4-7Y-dlo"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ZKF-Jw-fl5" secondAttribute="trailing" id="Loa-KO-meg"/>
-                <constraint firstItem="UG2-TZ-Ccz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="QIv-5e-7bY"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mCg-Dp-goi" secondAttribute="trailing" id="S81-hF-gvD"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CuN-8r-1MD" secondAttribute="trailing" id="TkF-zK-DBg"/>
                 <constraint firstItem="CuN-8r-1MD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Y2w-wU-u6h"/>
-                <constraint firstItem="ZKF-Jw-fl5" firstAttribute="top" secondItem="UG2-TZ-Ccz" secondAttribute="bottom" id="kwb-yI-Uzf"/>
+                <constraint firstItem="ZKF-Jw-fl5" firstAttribute="top" secondItem="mCg-Dp-goi" secondAttribute="bottom" id="eyf-Hz-Og5"/>
                 <constraint firstItem="ZKF-Jw-fl5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wbE-pO-RMc"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ZKF-Jw-fl5" secondAttribute="bottom" id="xzA-ec-em5"/>
             </constraints>
             <connections>
                 <outlet property="cityNameLabel" destination="nPG-n6-TUj" id="86G-4F-aZg"/>
+                <outlet property="hourlyForecastView" destination="mCg-Dp-goi" id="uqF-sX-IUC"/>
                 <outlet property="minMaxLabel" destination="U0f-jj-vcX" id="tvJ-L0-P3t"/>
                 <outlet property="tableView" destination="ZKF-Jw-fl5" id="Vb4-pF-5X7"/>
                 <outlet property="temperatureLabel" destination="BY7-dr-Gtf" id="9hi-OL-KfG"/>
