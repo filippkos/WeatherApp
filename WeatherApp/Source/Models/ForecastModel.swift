@@ -9,10 +9,10 @@ import Foundation
 struct ForecastModel: Codable {
     let cod: String
     let message, cnt: Int
-    let list: [List]
+    let list: [Period]
     let city: City
     
-    var grouped: [[List]] {
+    var days: [[Period]] {
         return list.splitArray(step: 8)
     }
 }
@@ -31,8 +31,8 @@ struct Coord: Codable {
     let lat, lon: Double
 }
 
-// MARK: - List
-struct List: Codable {
+// MARK: - Period
+struct Period: Codable {
     let dt: Int
     let main: MainClass
     let weather: [Weather]

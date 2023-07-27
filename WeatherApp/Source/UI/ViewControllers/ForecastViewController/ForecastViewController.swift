@@ -19,6 +19,7 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.rootView?.tableView.dataSource = self
         self.rootView?.tableView.delegate = self
         self.rootView?.tableView.register(cellClass: ForecastTableViewCell.self)
@@ -31,7 +32,9 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: Variables
     
     var city: String = ""
-    var lists: [[List]] = []
+    var list: [Period] = []
+    var days: [[Period]] = []
+    var currentDay: Int = 0
     
     // MARK: -
     // MARK: Private
@@ -47,10 +50,12 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
         NetworkManager.task(requestModel: self.prepareRequestModel(id: "456172")) { [weak self] (result: Result<ForecastModel, Error>) in
             switch result {
             case .success(let model):
-                self?.lists = model.grouped
+                self?.list = model.list
+                self?.days = self?.list.splitArray(step: 8, firstStep: self?.getTodayPeriodsCount() ?? 0) ?? []
                 self?.city = model.city.name
+                
                 DispatchQueue.main.async {
-                    self?.rootView?.configure(model: model)
+                    self?.rootView?.configureDefault(model: model, currentDay: self?.currentDay ?? 0)
                     self?.rootView?.tableView?.reloadData()
                 }
             case .failure(let error):
@@ -59,17 +64,20 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    func getTodayPeriodsCount() -> Int {
+        let date = NSDate(timeIntervalSince1970: TimeInterval(self.list.first?.dt ?? 0))
+        let hours = DateFormatter.hoursFormatter.string(from: date as Date)
+        
+        return (24 - (Int(hours) ?? 0)) / 3
+    }
+    
     // MARK: -
     // MARK: UITableView DataSource
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let date = NSDate(timeIntervalSince1970: TimeInterval(self.lists[section].first?.dt ?? 0))
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = DateFormatter.Style.medium //Set date style
-        dateFormatter.timeZone = .current
-        let localDate = dateFormatter.string(from: date as Date)
+        let date = NSDate(timeIntervalSince1970: TimeInterval(self.days[section].first?.dt ?? 0))
         
-        return localDate
+        return DateFormatter.dateAndTimeFormatter.string(from: date as Date)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -77,16 +85,16 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        self.lists.count
+        self.days.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.lists.first?.count ?? 0
+        self.days[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withCellClass: ForecastTableViewCell.self, for: indexPath)
-        cell.configure(model: self.lists[indexPath.section][indexPath.row])
+        cell.configure(model: self.days[indexPath.section][indexPath.row])
         
         return cell
     }
