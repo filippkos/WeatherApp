@@ -19,11 +19,11 @@ class ForecastView: UIView {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var hourlyForecastView: HourlyForecastView!
 
-    func configureDefault(model: ForecastModel, currentDay: Int) {
-        self.cityNameLabel.text = model.city.name
-        self.temperatureLabel.text = TemperatureConverter.stringCelsius(from: model.list.first?.main.temp ?? 0)
-        self.weatherLabel.text = model.list.first?.weather.first?.main.rawValue ?? ""
-        self.hourlyForecastView.setup(model: model)
+    func configureDefault(cityName: String, selectedDay: [Period]) {
+        self.cityNameLabel.text = cityName
+        self.temperatureLabel.text = TemperatureConverter.stringCelsius(from: selectedDay.first?.main.temp ?? 0)
+        self.weatherLabel.text = selectedDay.first?.weather.first?.main.rawValue ?? ""
+        self.hourlyForecastView.setup(for: selectedDay)
     }
     
     func changeLabels() {

@@ -17,26 +17,30 @@ public enum HttpMethod: String {
 
 struct NetworkRequestModel {
     
-    var query: String
+    var requestType: ServerConstants
     var params: [String : String]?
+    var endPoint: String?
     var httpMethod: HttpMethod
     var request: URLRequest {
-        let urlComponents = self.createUrlComponents(query: query, params: params)
+        let urlComponents = self.createUrlComponents(requestType: requestType, params: params, endPoint: endPoint)
         var request = URLRequest(url: urlComponents.url ?? URL(fileURLWithPath: ""))
         request.httpMethod = (HttpMethod.get).rawValue
         
         return request
     }
     
-    private func createUrlComponents(query: String, params: [String : String]?) -> URLComponents {
+    private func createUrlComponents(requestType: ServerConstants, params: [String : String]?, endPoint: String?) -> URLComponents {
         var components = URLComponents()
-            components.scheme = ServerConstants.scheme
-            components.host = ServerConstants.host
-            components.path = ServerConstants.path + ServerConstants.version + query
+        components = requestType.type
+        
         if let params = params {
             components.queryItems = params.map {
                 URLQueryItem(name: $0.key, value: $0.value)
             }
+        }
+        
+        if let endPoint = endPoint {
+            components.path += endPoint
         }
         
         return components

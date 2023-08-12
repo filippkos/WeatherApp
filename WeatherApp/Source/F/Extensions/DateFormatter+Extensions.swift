@@ -9,28 +9,83 @@ import Foundation
 
 public extension DateFormatter {
     
-    /// 24
-    static let hoursFormatter: DateFormatter = {
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH"
+    enum DateFormat {
+        case time(withOnly: TimeUnit)
+        case fullTime(format: HoursQuantity)
+        case date(format: DateType)
+        case fullTimeAndDate
         
-        return timeFormatter
-    }()
+        var getFormat: String {
+            switch self {
+            case .time(withOnly: let withOnly):
+                switch withOnly {
+                case .hours:
+                    return "HH"
+                case .hoursAndMinutes:
+                    return "HH:mm"
+                case .minutes:
+                    return "mm"
+                case .minutesAndSeconds:
+                    return "mm:ss"
+                case .seconds:
+                    return "ss"
+                }
+            case .fullTime(format: let format):
+                switch format {
+                case .twelve:
+                    return "hh:mm:ss"
+                case .twentyFour:
+                    return "HH:mm:ss"
+                }
+            case .date(format: let format):
+                switch format {
+                case .pointNumDate:
+                    return "dd.MM.yyyy"
+                case .slashNumDate:
+                    return "dd/MM/yyyy"
+                case .shortWordDate:
+                    return "dd MMM yyyy"
+                case .fullWordDate:
+                    return "dd MMMM yyyy"
+                }
+            case .fullTimeAndDate:
+                return "dd MMMM yyyy HH:mm:ss"
+            }
+        }
+    }
     
-    /// 19:00
-    static let timeFormatter: DateFormatter = {
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH:mm"
-        
-        return timeFormatter
-    }()
+    enum TimeUnit {
+        case hours
+        case hoursAndMinutes
+        case minutes
+        case minutesAndSeconds
+        case seconds
+    }
     
-    /// 26 Jun 2023
-    static let dateAndTimeFormatter: DateFormatter = {
+    enum HoursQuantity {
+        case twelve
+        case twentyFour
+    }
+    
+    enum DateType {
+        case pointNumDate
+        case slashNumDate
+        case shortWordDate
+        case fullWordDate
+    }
+    
+    static func customDateFormatter(
+        format: DateFormat? = .fullTimeAndDate,
+        locale: Locale? = .current,
+        timeZone: TimeZone? = .current
+    )
+        -> DateFormatter
+    {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = DateFormatter.Style.medium //Set date style
-       // dateFormatter.timeZone = .current
+        dateFormatter.locale = locale
+        dateFormatter.timeZone = timeZone
+        dateFormatter.dateFormat = format?.getFormat
         
         return dateFormatter
-    }()
+    }
 }

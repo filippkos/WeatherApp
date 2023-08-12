@@ -7,10 +7,51 @@
 
 import Foundation
 
-struct ServerConstants {
+protocol BaseComponents {
     
-    static let scheme = "https"
-    static let host = "api.openweathermap.org"
-    static let path = "/data/"
-    static let version = "2.5/"
+    var scheme: String { get }
+    var host: String { get }
+    var path: String { get }
 }
+
+enum ServerConstants {
+    
+    struct ForecastURLComponents: BaseComponents {
+        
+        let scheme = "https"
+        let host = "api.openweathermap.org"
+        let path = "/data/2.5/forecast"
+    }
+
+    struct ImageURLComponents: BaseComponents {
+        
+       let scheme = "https"
+       let host = "openweathermap.org"
+       let path = "/img/wn/"
+    }
+    
+    case forecast
+    case image
+    
+    var type: URLComponents {
+        switch self {
+            
+        case .forecast:
+            return self.createComponents(type: ForecastURLComponents())
+        case .image:
+            return self.createComponents(type: ImageURLComponents())
+        }
+    }
+    
+    func createComponents(type: BaseComponents) -> URLComponents {
+        var mainComponents = URLComponents()
+        
+        mainComponents.scheme = type.scheme
+        mainComponents.host = type.host
+        mainComponents.path = type.path
+        
+        return mainComponents
+    }
+}
+    
+

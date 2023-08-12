@@ -34,16 +34,15 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
     var city: String = ""
     var list: [Period] = []
     var days: [[Period]] = []
-    var currentDay: Int = 0
+    var selectedDay: [Period] = []
     
     // MARK: -
     // MARK: Private
     
     func prepareRequestModel(id: String) -> NetworkRequestModel {
-        let query = "forecast"
         let params = ["id" : id, "appid" : "83b161664a26ce94b708c5723c38496c"]
         
-        return NetworkRequestModel(query: query, params: params, httpMethod: .get)
+        return NetworkRequestModel(requestType: .forecast, params: params, httpMethod: .get)
     }
     
     func forecast() {
@@ -52,10 +51,11 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
             case .success(let model):
                 self?.list = model.list
                 self?.days = self?.list.splitArray(step: 8, firstStep: self?.getTodayPeriodsCount() ?? 0) ?? []
+                self?.selectedDay = self?.days.first ?? []
                 self?.city = model.city.name
                 
                 DispatchQueue.main.async {
-                    self?.rootView?.configureDefault(model: model, currentDay: self?.currentDay ?? 0)
+                    self?.rootView?.configureDefault(cityName: model.city.name, selectedDay: self?.selectedDay ?? [])
                     self?.rootView?.tableView?.reloadData()
                 }
             case .failure(let error):
@@ -66,7 +66,7 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func getTodayPeriodsCount() -> Int {
         let date = NSDate(timeIntervalSince1970: TimeInterval(self.list.first?.dt ?? 0))
-        let hours = DateFormatter.hoursFormatter.string(from: date as Date)
+        let hours = DateFormatter.customDateFormatter(format: .time(withOnly: .hours)).string(from: date as Date)
         
         return (24 - (Int(hours) ?? 0)) / 3
     }
@@ -75,9 +75,7 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: UITableView DataSource
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let date = NSDate(timeIntervalSince1970: TimeInterval(self.days[section].first?.dt ?? 0))
-        
-        return DateFormatter.dateAndTimeFormatter.string(from: date as Date)
+        return TimeConverter.getStringDate(from: self.days[section].first?.dt ?? 0)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -101,5 +99,13 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.rootView?.changeLabels()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedDay = self.days[indexPath.section]
+        DispatchQueue.main.async {
+            self.rootView?.configureDefault(cityName: self.city, selectedDay: self.selectedDay)
+            self.rootView?.tableView?.reloadData()
+        }
     }
 }
