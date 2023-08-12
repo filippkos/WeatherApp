@@ -51,6 +51,7 @@
 		22B80CAB2A6EB012006DE713 /* HourlyForecastViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22B80CA92A6EB012006DE713 /* HourlyForecastViewCell.xib */; };
 		22B80CAD2A711976006DE713 /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B80CAC2A711976006DE713 /* DateFormatter+Extensions.swift */; };
 		22B80CAF2A7273EB006DE713 /* TemperatureConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B80CAE2A7273EB006DE713 /* TemperatureConverter.swift */; };
+		22B80CB22A727DF4006DE713 /* TimeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B80CB12A727DF4006DE713 /* TimeConverter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +100,7 @@
 		22B80CA92A6EB012006DE713 /* HourlyForecastViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HourlyForecastViewCell.xib; sourceTree = "<group>"; };
 		22B80CAC2A711976006DE713 /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		22B80CAE2A7273EB006DE713 /* TemperatureConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureConverter.swift; sourceTree = "<group>"; };
+		22B80CB12A727DF4006DE713 /* TimeConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeConverter.swift; sourceTree = "<group>"; };
 		77CCB734EB4AD5C59853FE61 /* Pods_WeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71D7F53CE3E8B72C624EE5C /* Pods-WeatherApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.debug.xcconfig"; path = "Target Support Files/Pods-WeatherApp/Pods-WeatherApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B5C017E8FE04DD83C6653CA2 /* Pods-WeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.release.xcconfig"; path = "Target Support Files/Pods-WeatherApp/Pods-WeatherApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				22B80CAE2A7273EB006DE713 /* TemperatureConverter.swift */,
+				22B80CB12A727DF4006DE713 /* TimeConverter.swift */,
 			);
 			path = Converters;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				22A4D09B2A41AE5A00A06E4F /* UViewController+ViewCast.swift in Sources */,
 				22B80CAD2A711976006DE713 /* DateFormatter+Extensions.swift in Sources */,
 				22A4D0B12A4325E600A06E4F /* F.swift in Sources */,
+				22B80CB22A727DF4006DE713 /* TimeConverter.swift in Sources */,
 				22A4D0A02A42E94F00A06E4F /* ForecastModel.swift in Sources */,
 				228127F62A65D3B000C3ECFF /* Images.swift in Sources */,
 				228127D42A5D9DD400C3ECFF /* ForecastTableViewHeaderFooterView.swift in Sources */,

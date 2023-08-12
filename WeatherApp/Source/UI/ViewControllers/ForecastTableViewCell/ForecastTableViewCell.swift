@@ -29,18 +29,12 @@ final class ForecastTableViewCell: UITableViewCell {
     // MARK: Public
     
     func configure(model: Period) {
-        self.timeLabel.text = self.getTime(time: TimeInterval(model.dt))
+        self.timeLabel.text = TimeConverter.getStringTime(from: model.dt)
         self.tempTitleLabel.text = loc.temperature
         self.tempValueLabel.text = TemperatureConverter.stringCelsius(from: model.main.temp)
         self.minTempTitleLabel.text = loc.min
         self.minTempValueLabel.text = TemperatureConverter.stringCelsius(from: model.main.tempMin)
         self.maxTempTitleLabel.text = loc.max
         self.maxTempValueLabel.text = TemperatureConverter.stringCelsius(from: model.main.tempMax)
-    }
-    
-    func getTime(time: TimeInterval) -> String {
-        let date = NSDate(timeIntervalSince1970: time)
-        
-        return DateFormatter.timeFormatter.string(from: date as Date)
     }
 }
