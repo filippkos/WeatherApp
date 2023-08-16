@@ -95,7 +95,7 @@ enum Pod: String, Codable {
 }
 
 // MARK: - Weather
-struct Weather: Codable {
+struct Weather: Codable, Hashable {
     let id: Int
     let main: MainEnum
     let description, icon: String

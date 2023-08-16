@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-class ForecastViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, RootViewGettable {
+class ForecastViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, RootViewGettable {
     
     // MARK: -
     // MARK: Typealiases
@@ -15,29 +17,52 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
     typealias RootView = ForecastView
     
     // MARK: -
+    // MARK: Variables
+    
+    var city: String = ""
+    var id: String = ""
+    var list: [Period] = []
+    var days: [[Period]] = []
+    var selectedDay: [Period] = []
+    private let dispose = DisposeBag()
+    
+    // MARK: -
     // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.rootView?.tableView.dataSource = self
-        self.rootView?.tableView.delegate = self
-        self.rootView?.tableView.register(cellClass: ForecastTableViewCell.self)
-        self.rootView?.tableView.register(headerFooterClass: ForecastTableViewHeaderFooterView.self)
-        
-        self.forecast()
+        self.rootView?.collectionView.dataSource = self
+        self.rootView?.collectionView.delegate = self
+        self.rootView?.collectionView.registerDefaultCell(cellClass: ForecastCollectionViewCell.self)
+        self.navigationController?.navigationBar.isHidden = true
+        self.rootView?.flowLayoutListConfigure()
+        self.forecast(cityID: "456172")
+        self.bind()
     }
-    
-    // MARK: -
-    // MARK: Variables
-    
-    var city: String = ""
-    var list: [Period] = []
-    var days: [[Period]] = []
-    var selectedDay: [Period] = []
-    
+
     // MARK: -
     // MARK: Private
+    
+    private func bind() {
+        self.rootView?.textFieldView.textField
+            .rx
+            .text
+            .bind { [weak self] text in
+                self?.city = text ?? ""
+            }
+            .disposed(by: self.dispose)
+        
+        self.rootView?.textFieldView.actionButton
+            .rx
+            .tap
+            .bind { [weak self] in
+                self?.forecast(cityID: self?.getCityID(cityName: self?.city ?? "") ?? "")
+                self?.rootView?.textFieldView.textField.placeholder = self?.city
+                self?.rootView?.textFieldView.textField.text = ""
+            }
+            .disposed(by: self.dispose)
+    }
     
     func prepareRequestModel(id: String) -> NetworkRequestModel {
         let params = ["id" : id, "appid" : "83b161664a26ce94b708c5723c38496c"]
@@ -45,8 +70,33 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
         return NetworkRequestModel(requestType: .forecast, params: params, httpMethod: .get)
     }
     
-    func forecast() {
-        NetworkManager.task(requestModel: self.prepareRequestModel(id: "456172")) { [weak self] (result: Result<ForecastModel, Error>) in
+    func getCityID(cityName: String) -> String {
+        var result = ""
+        cityList()?.forEach {
+            if $0.name.lowercased() == cityName.lowercased() {
+                result = $0.id.description
+            }
+        }
+        
+        return result
+    }
+    
+    func cityList() -> CityList? {
+        guard let path = Bundle.main.url(forResource: "CityList", withExtension: "json") else {
+            return nil
+        }
+        do {
+            let data = try Data(contentsOf: path)
+            let result = try JSONDecoder().decode(CityList.self, from: data)
+            return result
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
+    func forecast(cityID: String) {
+        NetworkManager.task(requestModel: self.prepareRequestModel(id: cityID)) { [weak self] (result: Result<ForecastModel, Error>) in
             switch result {
             case .success(let model):
                 self?.list = model.list
@@ -56,7 +106,7 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
                 
                 DispatchQueue.main.async {
                     self?.rootView?.configureDefault(cityName: model.city.name, selectedDay: self?.selectedDay ?? [])
-                    self?.rootView?.tableView?.reloadData()
+                    self?.rootView?.collectionView?.reloadData()
                 }
             case .failure(let error):
                 print(error)
@@ -74,38 +124,14 @@ class ForecastViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: -
     // MARK: UITableView DataSource
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return TimeConverter.getStringDate(from: self.days[section].first?.dt ?? 0)
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        self.rootView?.tableView.dequeueReusableHeaderFooterView(withHeaderFooterClass: ForecastTableViewHeaderFooterView.self)
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         self.days.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.days[section].count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withCellClass: ForecastTableViewCell.self, for: indexPath)
-        cell.configure(model: self.days[indexPath.section][indexPath.row])
-        
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        var cell: ForecastCollectionViewCell
+        cell = self.rootView?.collectionView.dequeueReusableCell(cellClass: ForecastCollectionViewCell.self, indexPath: indexPath) ?? ForecastCollectionViewCell()
+        cell.configure(day: self.days[indexPath.row])
         return cell
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.rootView?.changeLabels()
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedDay = self.days[indexPath.section]
-        DispatchQueue.main.async {
-            self.rootView?.configureDefault(cityName: self.city, selectedDay: self.selectedDay)
-            self.rootView?.tableView?.reloadData()
-        }
     }
 }
