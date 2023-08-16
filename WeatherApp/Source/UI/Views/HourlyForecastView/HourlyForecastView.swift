@@ -40,40 +40,14 @@ class HourlyForecastView: UICollectionView, UICollectionViewDataSource, UICollec
     private func prepareLayout() {
         self.layout.scrollDirection = .horizontal
         self.layout.sectionInset = self.getInsets()
-        self.layout.itemSize = CGSize(width: 70, height: 146)
-        self.layout.minimumLineSpacing = 5
+        self.layout.itemSize = CGSize(width: 60, height: 146)
+        self.layout.minimumLineSpacing = 8
         self.isScrollEnabled = true
     }
     
     private func getInsets() -> UIEdgeInsets {
-        let totalCellWidth = self.bounds.width
-        
-        let horizontalInset = (self.bounds.width - CGFloat(totalCellWidth)) / 2
-        let verticalInset = (self.bounds.size.height - CGFloat(100)) / 2
 
-        return UIEdgeInsets(top: verticalInset, left: horizontalInset, bottom: verticalInset, right: horizontalInset)
-    }
-    
-    func downloadWeatherImage(period: Period) -> UIImage? {
-        let icon = period.weather[0].icon
-        var endPoint = icon + "@2x.png"
-        
-        let requestModel = NetworkRequestModel(requestType: .image, endPoint: endPoint, httpMethod: .get)
-        
-        var defaultImage: UIImage?
-        NetworkManager.image(requestModel: requestModel) { [weak self] (result: Result<Data, Error>) in
-            switch result {
-                
-            case .success(let data):
-                if let image = UIImage(data: data) {
-                    defaultImage = image
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-        
-        return defaultImage
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

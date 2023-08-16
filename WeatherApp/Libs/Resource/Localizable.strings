@@ -7,8 +7,8 @@
 */
 
 // MARK: -
-// MARK: ForecastTableViewCell
+// MARK: ForecastView
 
-"forecast_table_cell.temperature" = "Temperature";
-"forecast_table_cell.min" = "Min";
-"forecast_table_cell.max" = "Max";
+"forecast_view.today" = "Today";
+"forecast_view.tomorrow" = "Tomorrow";
+"forecast_view.forecast" = "Forecast";

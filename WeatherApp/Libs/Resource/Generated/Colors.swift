@@ -22,6 +22,8 @@ public typealias AssetColorTypeAlias = ColorAsset.Color
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 public enum Colors {
+  public static let backgroundGreen = ColorAsset(name: "BackgroundGreen")
+  public static let cellBackgroundGreen = ColorAsset(name: "CellBackgroundGreen")
   public static let carrotOrange = ColorAsset(name: "CarrotOrange")
   public static let lightCarrotOrange = ColorAsset(name: "LightCarrotOrange")
   public static let lightGreen = ColorAsset(name: "LightGreen")

@@ -10,16 +10,16 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 public enum L10n {
-  public enum ForecastTableCell {
-    /// Max
-    public static let max = L10n.tr("Localizable", "forecast_table_cell.max", fallback: "Max")
-    /// Min
-    public static let min = L10n.tr("Localizable", "forecast_table_cell.min", fallback: "Min")
+  public enum ForecastView {
+    /// Forecast
+    public static let forecast = L10n.tr("Localizable", "forecast_view.forecast", fallback: "Forecast")
     /// Localizable.strings
     ///   idap_study_task10
     /// 
     ///   Created by Filipp Kosenko on 07.03.2023.
-    public static let temperature = L10n.tr("Localizable", "forecast_table_cell.temperature", fallback: "Temperature")
+    public static let today = L10n.tr("Localizable", "forecast_view.today", fallback: "Today")
+    /// Tomorrow
+    public static let tomorrow = L10n.tr("Localizable", "forecast_view.tomorrow", fallback: "Tomorrow")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
