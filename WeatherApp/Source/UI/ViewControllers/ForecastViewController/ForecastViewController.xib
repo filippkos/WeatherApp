@@ -5,14 +5,8 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="SFPRODISPLAYREGULAR.OTF">
-            <string>SFProDisplay-Regular</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ForecastViewController" customModule="WeatherApp" customModuleProvider="target">
             <connections>
@@ -24,68 +18,8 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="CuN-8r-1MD">
-                    <rect key="frame" x="16" y="59.000000000000014" width="361" height="196.33333333333337"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MqL-kt-vZC" customClass="SearchTextFieldView" customModule="WeatherApp" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="50" id="C1P-G6-JUM"/>
-                            </constraints>
-                        </view>
-                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kFK-xr-eEN">
-                            <rect key="frame" x="0.0" y="50" width="361" height="112"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BY7-dr-Gtf" userLabel="Temperature Label">
-                                    <rect key="frame" x="0.0" y="0.0" width="131" height="112"/>
-                                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="57"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaF-wZ-6n4" userLabel="Weather Label">
-                                    <rect key="frame" x="131" y="0.0" width="55.333333333333343" height="112"/>
-                                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="24"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="uBb-Nw-PUC">
-                                    <rect key="frame" x="186.33333333333337" y="0.0" width="174.66666666666663" height="112"/>
-                                </imageView>
-                            </subviews>
-                        </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xBh-a5-H9M">
-                            <rect key="frame" x="0.0" y="162" width="361" height="34.333333333333343"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tg5-xL-Bs3">
-                                    <rect key="frame" x="0.0" y="0.0" width="115" height="34.333333333333336"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I2r-Hb-D1H">
-                                    <rect key="frame" x="123" y="0.0" width="115" height="34.333333333333336"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Akj-jA-jwa">
-                                    <rect key="frame" x="246" y="0.0" width="115" height="34.333333333333336"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </stackView>
-                    </subviews>
-                </stackView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mCg-Dp-goi" customClass="HourlyForecastView" customModule="WeatherApp" customModuleProvider="target">
-                    <rect key="frame" x="16" y="263.33333333333331" width="361" height="150"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="150" id="ccP-Lr-DIJ"/>
-                    </constraints>
-                </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="0gU-hI-2c5">
-                    <rect key="frame" x="0.0" y="413.33333333333326" width="393" height="404.66666666666674"/>
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RrA-SU-mBn">
                         <size key="itemSize" width="128" height="128"/>
@@ -102,26 +36,13 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="BackgroundGreen"/>
             <constraints>
-                <constraint firstItem="mCg-Dp-goi" firstAttribute="top" secondItem="CuN-8r-1MD" secondAttribute="bottom" constant="8" id="3sw-zF-ZQQ"/>
-                <constraint firstItem="CuN-8r-1MD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Ae3-iM-lcj"/>
-                <constraint firstItem="mCg-Dp-goi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Cz4-7Y-dlo"/>
+                <constraint firstItem="0gU-hI-2c5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="4cJ-aR-PWM"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="0gU-hI-2c5" secondAttribute="trailing" id="GvO-t8-DWx"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="0gU-hI-2c5" secondAttribute="bottom" id="JBJ-AD-w2R"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mCg-Dp-goi" secondAttribute="trailing" constant="16" id="S81-hF-gvD"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CuN-8r-1MD" secondAttribute="trailing" constant="16" id="TkF-zK-DBg"/>
-                <constraint firstItem="CuN-8r-1MD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Y2w-wU-u6h"/>
                 <constraint firstItem="0gU-hI-2c5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="dof-8F-yJO"/>
-                <constraint firstItem="mCg-Dp-goi" firstAttribute="bottom" secondItem="0gU-hI-2c5" secondAttribute="top" id="mCx-Gf-ClQ"/>
             </constraints>
             <connections>
                 <outlet property="collectionView" destination="0gU-hI-2c5" id="2cO-YC-hbz"/>
-                <outlet property="forecastButton" destination="Akj-jA-jwa" id="AKu-mN-hDg"/>
-                <outlet property="hourlyForecastView" destination="mCg-Dp-goi" id="uqF-sX-IUC"/>
-                <outlet property="temperatureLabel" destination="BY7-dr-Gtf" id="9hi-OL-KfG"/>
-                <outlet property="textFieldView" destination="MqL-kt-vZC" id="6eh-UW-o1e"/>
-                <outlet property="todayButton" destination="tg5-xL-Bs3" id="BrN-wd-o5D"/>
-                <outlet property="tomorrowButton" destination="I2r-Hb-D1H" id="mab-xp-2e1"/>
-                <outlet property="weatherLabel" destination="EaF-wZ-6n4" id="ff5-B5-3EZ"/>
             </connections>
             <point key="canvasLocation" x="-63.358778625954194" y="19.718309859154932"/>
         </view>
@@ -130,8 +51,5 @@
         <namedColor name="BackgroundGreen">
             <color red="0.73725490196078436" green="0.92941176470588238" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
