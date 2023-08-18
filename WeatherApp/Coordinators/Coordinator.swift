@@ -19,16 +19,20 @@ class Coordinator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.prepareForecastViewController()
+        self.prepareContainerViewController()
     }
     
     // MARK: -
     // MARK: Private
     
-    private func prepareForecastViewController() {
-        let controller = ForecastViewController()
+    private func prepareContainerViewController() {
+        let containerController = ContainerViewController()
+        let detailsController = DetailsViewController(type: .details)
+        let forecastController = ForecastViewController(type: .forecast)
         
-        self.navigationController.setViewControllers([controller], animated: true)
+        containerController.add(detailsController)
+        containerController.add(forecastController)
+        
+        self.navigationController.setViewControllers([containerController], animated: true)
     }
-    
 }

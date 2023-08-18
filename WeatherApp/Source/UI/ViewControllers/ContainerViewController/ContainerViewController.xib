@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFPRODISPLAYREGULAR.OTF">
+            <string>SFProDisplay-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContainerViewController" customModule="WeatherApp" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="ContainerView" customModule="WeatherApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gt3-Ys-Loz">
+                    <rect key="frame" x="16" y="59.000000000000014" width="361" height="196.33333333333337"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xl9-K8-RWY" customClass="SearchTextFieldView" customModule="WeatherApp" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="x06-Xf-Had"/>
+                            </constraints>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rv2-fB-zWx">
+                            <rect key="frame" x="0.0" y="50" width="361" height="112"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3OX-md-LrC" userLabel="Temperature Label">
+                                    <rect key="frame" x="0.0" y="0.0" width="131" height="112"/>
+                                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="57"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8k-TS-ya8" userLabel="Weather Label">
+                                    <rect key="frame" x="131" y="0.0" width="55.333333333333343" height="112"/>
+                                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="24"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="aRB-rC-ACg">
+                                    <rect key="frame" x="186.33333333333337" y="0.0" width="174.66666666666663" height="112"/>
+                                </imageView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="taP-BB-On2">
+                            <rect key="frame" x="0.0" y="162" width="361" height="34.333333333333343"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHr-iR-z6I">
+                                    <rect key="frame" x="0.0" y="0.0" width="115" height="34.333333333333336"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgO-oM-KX2">
+                                    <rect key="frame" x="123" y="0.0" width="115" height="34.333333333333336"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ypQ-sc-q3X">
+                                    <rect key="frame" x="246" y="0.0" width="115" height="34.333333333333336"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </stackView>
+                    </subviews>
+                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M8G-bC-pIs">
+                    <rect key="frame" x="16" y="271.33333333333331" width="361" height="530.66666666666674"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="BackgroundGreen"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="M8G-bC-pIs" secondAttribute="trailing" constant="16" id="0aS-vW-qnM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="M8G-bC-pIs" secondAttribute="bottom" constant="16" id="Qbd-tx-v1K"/>
+                <constraint firstItem="M8G-bC-pIs" firstAttribute="top" secondItem="gt3-Ys-Loz" secondAttribute="bottom" constant="16" id="cLn-L5-bVI"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gt3-Ys-Loz" secondAttribute="trailing" constant="16" id="dUZ-kH-6FC"/>
+                <constraint firstItem="M8G-bC-pIs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="oRi-ba-O5x"/>
+                <constraint firstItem="gt3-Ys-Loz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="rD1-Zb-I6m"/>
+                <constraint firstItem="gt3-Ys-Loz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="xkK-HG-YDl"/>
+            </constraints>
+            <connections>
+                <outlet property="contentView" destination="M8G-bC-pIs" id="tgT-UI-Ry8"/>
+                <outlet property="forecastButton" destination="ypQ-sc-q3X" id="ASi-Y5-5ZV"/>
+                <outlet property="temperatureLabel" destination="3OX-md-LrC" id="F42-aJ-HRy"/>
+                <outlet property="textFieldView" destination="xl9-K8-RWY" id="4H2-il-EWT"/>
+                <outlet property="todayButton" destination="SHr-iR-z6I" id="AQb-yL-gFL"/>
+                <outlet property="tomorrowButton" destination="JgO-oM-KX2" id="U5V-6E-Jqy"/>
+                <outlet property="weatherLabel" destination="v8k-TS-ya8" id="HHl-oy-W4Y"/>
+            </connections>
+            <point key="canvasLocation" x="50" y="21"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="BackgroundGreen">
+            <color red="0.73725490196078436" green="0.92941176470588238" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
