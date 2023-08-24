@@ -22,7 +22,7 @@ class ForecastViewController: BaseChildController, UICollectionViewDataSource, U
     var city: String = ""
     var id: String = ""
     var days: [[Period]] = []
-    var selectedDay: [Period] = []
+
     private let dispose = DisposeBag()
     
     // MARK: -
@@ -34,7 +34,7 @@ class ForecastViewController: BaseChildController, UICollectionViewDataSource, U
         self.rootView?.collectionView.dataSource = self
         self.rootView?.collectionView.delegate = self
         self.rootView?.collectionView.registerDefaultCell(cellClass: ForecastCollectionViewCell.self)
-        self.navigationController?.navigationBar.isHidden = true
+        self.rootView?.collectionView.showsVerticalScrollIndicator = false
         self.rootView?.flowLayoutListConfigure()
         self.bind()
     }
@@ -58,7 +58,6 @@ class ForecastViewController: BaseChildController, UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         self.days.count
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -67,5 +66,10 @@ class ForecastViewController: BaseChildController, UICollectionViewDataSource, U
         cell.configure(day: self.days[indexPath.row])
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.parentController?.selectedDay.accept(self.parentController?.days[indexPath.row] ?? [])
+        self.parentController?.showChildController(.details)
     }
 }

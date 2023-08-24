@@ -9,6 +9,17 @@
 // MARK: -
 // MARK: ForecastView
 
-"forecast_view.today" = "Today";
-"forecast_view.tomorrow" = "Tomorrow";
-"forecast_view.forecast" = "Forecast";
+"container_view.today" = "Today";
+"container_view.tomorrow" = "Tomorrow";
+"container_view.forecast" = "Forecast";
+
+"details_view.wind_speed_title" = "Wind speed";
+"details_view.rain_chance_title" = "Rain chance";
+"details_view.pressure_title" = "Pressure";
+"details_view.humidity_title" = "Humidity";
+"details_view.hourly_forecast_title" = "Hourly forecast";
+"details_view.schedule_title" = "Forecast schedule";
+"details_view.chance_of_rain_diagram_title" = "Chance of rain";
+
+
+

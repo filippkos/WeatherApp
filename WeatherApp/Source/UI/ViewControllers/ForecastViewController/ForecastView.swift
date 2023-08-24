@@ -10,11 +10,6 @@ import UIKit
 class ForecastView: BaseChildView {
     
     // MARK: -
-    // MARK: Localization
-    
-    typealias loc = L10n.ForecastView
-    
-    // MARK: -
     // MARK: Public
     
     func flowLayoutListConfigure() {

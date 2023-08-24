@@ -11,7 +11,7 @@ class ContainerView: UIView {
 
     // MARK: Localization
     
-    typealias loc = L10n.ForecastView
+    typealias loc = L10n.ContainerView
     
     // MARK: -
     // MARK: Outlets
@@ -37,6 +37,9 @@ class ContainerView: UIView {
         self.todayButton.backgroundColor = Colors.cellBackgroundGreen.color
         self.tomorrowButton.backgroundColor = Colors.cellBackgroundGreen.color
         self.forecastButton.backgroundColor = Colors.cellBackgroundGreen.color
+        self.todayButton.tintColor = .black
+        self.tomorrowButton.tintColor = .black
+        self.forecastButton.tintColor = .black
         self.todayButton.setTitle(loc.today, for: .normal)
         self.tomorrowButton.setTitle(loc.tomorrow, for: .normal)
         self.forecastButton.setTitle(loc.forecast, for: .normal)

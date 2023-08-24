@@ -41,6 +41,10 @@ class DetailsCollectionViewCell: UICollectionViewCell {
     func setupUI() {
         self.backgroundColor = Colors.cellBackgroundGreen.color
         self.layer.cornerRadius = 18
+        self.titleLabel.font = Fonts.SFProDisplay.regular.font(size: 14)
+        self.titleImage.image = UIImage(systemName: "wind")
+        self.titleImage.tintColor = .black
+        
         self.addViews()
         self.addConstraints()
     }
@@ -50,23 +54,37 @@ class DetailsCollectionViewCell: UICollectionViewCell {
         self.titleStackView.axis = .horizontal
         self.mainStackView.distribution = .fillProportionally
         self.titleStackView.distribution = .fillProportionally
+        self.titleStackView.spacing = 8
         self.addSubview(self.mainStackView)
         self.mainStackView.addArrangedSubview(self.titleStackView)
         self.mainStackView.addArrangedSubview(self.container)
-        self.titleStackView.addArrangedSubview(self.titleImage)
-        self.titleStackView.addArrangedSubview(self.titleStackView)
-        
-        titleStackView.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        titleStackView.setContentCompressionResistancePriority(.defaultHigh,for: .vertical)
+        self.titleStackView.addArrangedSubview(self.titleImageBackground)
+        self.titleImageBackground.addSubview(self.titleImage)
+        self.titleStackView.addArrangedSubview(self.titleLabel)
+
+        self.titleImageBackground.setContentCompressionResistancePriority(.defaultHigh,for: .vertical)
+        self.container.setContentCompressionResistancePriority(.defaultLow,for: .vertical)
     }
     
     func addConstraints() {
-//        self.mainStackView.snp.makeConstraints {
-//            $0.left.right.equalToSuperview().inset(18)
-//            $0.top.bottom.equalToSuperview().inset(15)
-//        }
+        self.mainStackView.snp.makeConstraints {
+            $0.left.right.equalToSuperview().inset(18)
+            $0.top.bottom.equalToSuperview().inset(15)
+        }
         self.titleImageBackground.snp.makeConstraints {
             $0.width.height.equalTo(28)
+        }
+        
+        self.titleStackView.snp.makeConstraints {
+            $0.height.equalTo(28)
+        }
+        
+        self.container.snp.makeConstraints {
+            $0.height.equalTo(30)
+        }
+        
+        self.titleImage.snp.makeConstraints {
+            $0.left.right.top.bottom.equalToSuperview().inset(6)
         }
     }
     
@@ -79,8 +97,13 @@ class DetailsCollectionViewCell: UICollectionViewCell {
     
     private func createSpacer() -> UIView {
         let spacer = UIView()
-
-
+        
         return spacer
+    }
+    
+    override func prepareForReuse() {
+        self.container.subviews.forEach {
+            $0.removeFromSuperview()
+        }
     }
 }

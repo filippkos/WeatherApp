@@ -95,7 +95,7 @@ class ForecastCollectionViewCell: UICollectionViewCell {
         let mappedItems = day.map { ($0.weather.first, 1) }
         let counts = Dictionary(mappedItems, uniquingKeysWith: +)
         let mostCommon = counts.max { $0.1 < $1.1 }?.key
-        
+
         return mostCommon
     }
     

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class HourlyForecastView: UICollectionView, UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -16,9 +17,11 @@ class HourlyForecastView: UICollectionView, UICollectionViewDataSource, UICollec
     init() {
         super.init(frame: CGRect(), collectionViewLayout: layout)
         
-        self.registerDefaultCell(cellClass: HourlyForecastViewCell.self)
+        self.register(cellClass: HourlyForecastViewCell.self)
         self.dataSource = self
         self.delegate = self
+        self.prepareLayout()
+        self.collectionViewLayout = self.layout
     }
     
     required init?(coder: NSCoder) {
@@ -32,15 +35,15 @@ class HourlyForecastView: UICollectionView, UICollectionViewDataSource, UICollec
     }
     
     func setup(for day: [Period]) {
+        self.backgroundColor = .clear
         self.model = day
-        
         self.reloadData() 
     }
     
     private func prepareLayout() {
         self.layout.scrollDirection = .horizontal
         self.layout.sectionInset = self.getInsets()
-        self.layout.itemSize = CGSize(width: 60, height: 146)
+        self.layout.itemSize = CGSize(width: 50, height: 120)
         self.layout.minimumLineSpacing = 8
         self.isScrollEnabled = true
     }
@@ -55,7 +58,7 @@ class HourlyForecastView: UICollectionView, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = dequeueReusableCell(cellClass: HourlyForecastViewCell.self, indexPath: indexPath)
+        let cell = collectionView.dequeueReusableCell(cellClass: HourlyForecastViewCell.self, indexPath: indexPath)
         
         let icon = self.model[indexPath.row].weather[0].icon
         var endPoint = icon + "@2x.png"

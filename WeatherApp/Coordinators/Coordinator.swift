@@ -19,6 +19,7 @@ class Coordinator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        self.navigationController.navigationBar.isHidden = true
         self.prepareContainerViewController()
     }
     
@@ -27,12 +28,12 @@ class Coordinator {
     
     private func prepareContainerViewController() {
         let containerController = ContainerViewController()
-        let detailsController = DetailsViewController(type: .details)
-        let forecastController = ForecastViewController(type: .forecast)
+        let detailsController = DetailsViewController(type: .details, parent: containerController)
+        let forecastController = ForecastViewController(type: .forecast, parent: containerController)
         
         containerController.add(detailsController)
         containerController.add(forecastController)
-        
+       
         self.navigationController.setViewControllers([containerController], animated: true)
     }
 }

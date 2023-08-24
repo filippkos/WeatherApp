@@ -23,12 +23,14 @@ class BaseChildController: UIViewController {
     
     let type: ChildControllerType
     var list: BehaviorRelay<[Period]> = BehaviorRelay(value: [])
+    var parentController: ContainerViewController?
     
     // MARK: -
     // MARK: Init
     
-    init(type: ChildControllerType) {
+    init(type: ChildControllerType, parent: ContainerViewController) {
         self.type = type
+        self.parentController = parent
         
         super.init(nibName: nil, bundle: nil)
     }
