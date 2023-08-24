@@ -19,13 +19,16 @@ class DetailsView: BaseChildView {
     enum Section: Int, CaseIterable {
         case list
         case grid
+        case grid2
 
         var columnCount: Int {
             switch self {
-            case .list:
-                return 2
             case .grid:
                 return 1
+            case .list:
+                return 2
+            case .grid2:
+                return 2
             }
         }
     }
@@ -40,19 +43,22 @@ class DetailsView: BaseChildView {
                 widthDimension: .fractionalWidth(1.0),
                 heightDimension: .fractionalHeight(1.0))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = .init(top: 2, leading: 2, bottom: 2, trailing: 2)
+            item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
 
             let groupHeight = columns == 1 ?
-                NSCollectionLayoutDimension.absolute(100) :
+                NSCollectionLayoutDimension.estimated(180) :
                 NSCollectionLayoutDimension.fractionalWidth(0.3)
 
             let groupSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
                 heightDimension: groupHeight)
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columns)
+            group.interItemSpacing = .fixed(16)
 
             let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = .init(top: 20, leading: 20, bottom: 20, trailing: 20)
+            section.interGroupSpacing = 16
+            section.contentInsets = .init(top: 16, leading: 0, bottom: 0, trailing: 0)
+            
             return section
         }
         

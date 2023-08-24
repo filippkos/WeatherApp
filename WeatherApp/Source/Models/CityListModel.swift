@@ -14,6 +14,7 @@ struct SingleCity: Codable {
     let coord: Coordinates
 }
 
+
 // MARK: - Coordinates
 struct Coordinates: Codable {
     let lon, lat: Double

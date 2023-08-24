@@ -13,8 +13,10 @@ extension ContainerViewController {
         addChild(child)
         child.view.frame.size = self.rootView?.contentView.frame.size ?? CGSize()
         
+        
         if let baseChild = child as? BaseChildController {
             self.childControllers.append(baseChild)
+         //   baseChild.parentController = self
         }
         rootView?.contentView.addSubview(child.view)
         child.didMove(toParent: self)

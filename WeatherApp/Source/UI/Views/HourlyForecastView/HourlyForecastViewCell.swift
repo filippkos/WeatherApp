@@ -18,6 +18,7 @@ class HourlyForecastViewCell: UICollectionViewCell {
         self.layer.cornerRadius = 10
         self.timeLabel?.text = TimeConverter.getStringTime(from: period.dt)
         self.temperatureLabel?.text = TemperatureConverter.stringCelsius(from: period.main.temp).description
+        self.timeLabel?.tintColor = .black
         self.weatherIcon?.image = image
     }
 }

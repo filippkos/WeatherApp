@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ContainerViewController: UIViewController, RootViewGettable {
+class ContainerViewController: BaseParentController, RootViewGettable, UITextFieldDelegate {
         
     // MARK: -
     // MARK: Typealiases
@@ -19,12 +19,6 @@ class ContainerViewController: UIViewController, RootViewGettable {
     // MARK: -
     // MARK: Variables
     
-    var city: String = ""
-    var id: String = ""
-    var list: [Period] = []
-    var days: [[Period]] = []
-    var selectedDay: [Period] = []
-    var childControllers: [BaseChildController] = []
     private let dispose = DisposeBag()
     
     // MARK: -
@@ -32,8 +26,8 @@ class ContainerViewController: UIViewController, RootViewGettable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController?.navigationBar.isHidden = true
+
+        self.rootView?.textFieldView.textField.delegate = self
         self.forecast(cityID: "456172")
         self.bind()
     }
@@ -51,33 +45,41 @@ class ContainerViewController: UIViewController, RootViewGettable {
     // MARK: Private
     
     private func bind() {
-        self.rootView?.textFieldView.textField
-            .rx
-            .text
-            .bind { [weak self] text in
-                self?.city = text ?? ""
-            }
-            .disposed(by: self.dispose)
         
         self.rootView?.textFieldView.actionButton
             .rx
             .tap
             .bind { [weak self] in
-                self?.forecast(cityID: self?.getCityID(cityName: self?.city ?? "") ?? "")
+                let requestText = self?.rootView?.textFieldView.textField.text
+                if  requestText != "" {
+                    let id = self?.getCityID(cityName: requestText ?? "") ?? ""
+                    if id != "" {
+                        self?.city = self?.rootView?.textFieldView.textField.text ?? ""
+                        self?.forecast(cityID: id)
+                    } else {
+                        print("wrong city name")
+                    }
+                } else {
+                    print("empty search text")
+                }
                 self?.rootView?.textFieldView.textField.placeholder = self?.city
                 self?.rootView?.textFieldView.textField.text = ""
+                self?.rootView?.textFieldView.textField.endEditing(true)
             }
             .disposed(by: self.dispose)
+        
         self.rootView?.todayButton
             .rx
             .tap
             .bind { [weak self] in
+                self?.selectedDay.accept(self?.days[0] ?? [])
                 self?.showChildController(.details)
             }
         self.rootView?.tomorrowButton
             .rx
             .tap
             .bind { [weak self] in
+                self?.selectedDay.accept(self?.days[1] ?? [])
                 self?.showChildController(.details)
             }
         self.rootView?.forecastButton
@@ -100,17 +102,15 @@ class ContainerViewController: UIViewController, RootViewGettable {
             case .success(let model):
                 self?.list = model.list
                 self?.days = self?.list.splitArray(step: 8, firstStep: self?.getTodayPeriodsCount() ?? 0) ?? []
-                self?.selectedDay = self?.days.first ?? []
+                self?.currentDay = self?.days.first ?? []
                 self?.city = model.city.name
                 
                 self?.childControllers.forEach {
                     $0.list.accept(self?.list ?? [])
                 }
-
                 
                 DispatchQueue.main.async {
-                    self?.rootView?.configureDefault(cityName: model.city.name, selectedDay: self?.selectedDay ?? [])
-//                    self?.rootView?.collectionView?.reloadData()
+                    self?.rootView?.configureDefault(cityName: model.city.name, selectedDay: self?.currentDay ?? [])
                     self?.childControllers.forEach {
                         ($0.view as! BaseChildView).collectionView.reloadData()
                     }
@@ -123,6 +123,7 @@ class ContainerViewController: UIViewController, RootViewGettable {
     
     func getCityID(cityName: String) -> String {
         var result = ""
+        
         cityList()?.forEach {
             if $0.name.lowercased() == cityName.lowercased() {
                 result = $0.id.description
@@ -152,6 +153,10 @@ class ContainerViewController: UIViewController, RootViewGettable {
         let hours = DateFormatter.customDateFormatter(format: .time(withOnly: .hours)).string(from: date as Date)
         
         return (24 - (Int(hours) ?? 0)) / 3
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.rootView?.textFieldView.textField.placeholder = ""
     }
 }
 
