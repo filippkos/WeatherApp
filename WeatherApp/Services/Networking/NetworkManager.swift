@@ -7,7 +7,7 @@
 
 import Foundation
 
-class NetworkManager: NetworkSessionProcessable {
+final class NetworkManager: NetworkSessionProcessable {
     
     @discardableResult
     static func task<Model>(requestModel: NetworkRequestModel, completion: @escaping F.ResultHandler<Model>) -> URLSessionDataTask  where Model : Decodable, Model : Encodable {

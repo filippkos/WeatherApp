@@ -58,6 +58,11 @@
 		22AC4D192A8AB6E400341E0B /* CityList.json in Resources */ = {isa = PBXBuildFile; fileRef = 22AC4D182A8AB6E400341E0B /* CityList.json */; };
 		22AC4D1B2A8AB78300341E0B /* CityListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AC4D1A2A8AB78300341E0B /* CityListModel.swift */; };
 		22AFBB1D2A92AEBA0001D463 /* BaseParentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFBB1C2A92AEBA0001D463 /* BaseParentController.swift */; };
+		22AFBB232A97570A0001D463 /* ForecastModelStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFBB222A97570A0001D463 /* ForecastModelStorage.swift */; };
+		22AFBB292A9D25770001D463 /* LineGraphForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFBB282A9D25770001D463 /* LineGraphForecastView.swift */; };
+		22AFBB302A9DFA9D0001D463 /* YAxisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFBB2F2A9DFA9D0001D463 /* YAxisView.swift */; };
+		22AFBB322A9DFBB30001D463 /* XAxisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFBB312A9DFBB30001D463 /* XAxisView.swift */; };
+		22AFBB342A9DFFD90001D463 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFBB332A9DFFD80001D463 /* GridView.swift */; };
 		22B80CA42A6EABB1006DE713 /* HourlyForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B80CA32A6EABB1006DE713 /* HourlyForecastView.swift */; };
 		22B80CA72A6EAED2006DE713 /* CollectionView+ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B80CA62A6EAED2006DE713 /* CollectionView+ReusableCell.swift */; };
 		22B80CAA2A6EB012006DE713 /* HourlyForecastViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B80CA82A6EB012006DE713 /* HourlyForecastViewCell.swift */; };
@@ -121,6 +126,11 @@
 		22AC4D182A8AB6E400341E0B /* CityList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CityList.json; sourceTree = "<group>"; };
 		22AC4D1A2A8AB78300341E0B /* CityListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListModel.swift; sourceTree = "<group>"; };
 		22AFBB1C2A92AEBA0001D463 /* BaseParentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseParentController.swift; sourceTree = "<group>"; };
+		22AFBB222A97570A0001D463 /* ForecastModelStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastModelStorage.swift; sourceTree = "<group>"; };
+		22AFBB282A9D25770001D463 /* LineGraphForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineGraphForecastView.swift; sourceTree = "<group>"; };
+		22AFBB2F2A9DFA9D0001D463 /* YAxisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YAxisView.swift; sourceTree = "<group>"; };
+		22AFBB312A9DFBB30001D463 /* XAxisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XAxisView.swift; sourceTree = "<group>"; };
+		22AFBB332A9DFFD80001D463 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		22B80CA32A6EABB1006DE713 /* HourlyForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecastView.swift; sourceTree = "<group>"; };
 		22B80CA62A6EAED2006DE713 /* CollectionView+ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+ReusableCell.swift"; sourceTree = "<group>"; };
 		22B80CA82A6EB012006DE713 /* HourlyForecastViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecastViewCell.swift; sourceTree = "<group>"; };
@@ -247,18 +257,11 @@
 		2286FBC12A8E87E100AB07CD /* BaseTypes */ = {
 			isa = PBXGroup;
 			children = (
+				22AFBB1C2A92AEBA0001D463 /* BaseParentController.swift */,
 				2286FBBF2A8E86B800AB07CD /* BaseChildController.swift */,
 				2286FBC22A8E9B8E00AB07CD /* BaseChildView.swift */,
-				22AFBB1C2A92AEBA0001D463 /* BaseParentController.swift */,
 			);
 			path = BaseTypes;
-			sourceTree = "<group>";
-		};
-		2286FBC42A8F86E700AB07CD /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		2286FBC52A8F86FF00AB07CD /* DetailsCollectionViewCell */ = {
@@ -371,6 +374,7 @@
 				22A4D0AB2A431F2400A06E4F /* NetworkRequestModel.swift */,
 				22AC4D1A2A8AB78300341E0B /* CityListModel.swift */,
 				22CA47AE2A8FE3E2005E9A9F /* DetailsModel.swift */,
+				22AFBB222A97570A0001D463 /* ForecastModelStorage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -427,10 +431,29 @@
 			path = SearchTextFieldView;
 			sourceTree = "<group>";
 		};
+		22AFBB272A9D23DC0001D463 /* LineGraphForecastView */ = {
+			isa = PBXGroup;
+			children = (
+				22AFBB2A2A9D36E20001D463 /* Views */,
+				22AFBB282A9D25770001D463 /* LineGraphForecastView.swift */,
+			);
+			path = LineGraphForecastView;
+			sourceTree = "<group>";
+		};
+		22AFBB2A2A9D36E20001D463 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				22AFBB2F2A9DFA9D0001D463 /* YAxisView.swift */,
+				22AFBB312A9DFBB30001D463 /* XAxisView.swift */,
+				22AFBB332A9DFFD80001D463 /* GridView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		22B80CA22A6EAAAB006DE713 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2286FBC42A8F86E700AB07CD /* New Group */,
+				22AFBB272A9D23DC0001D463 /* LineGraphForecastView */,
 				22AC4D122A8A830100341E0B /* SearchTextFieldView */,
 				22AC4D112A8A82EE00341E0B /* HourlyForecastView */,
 			);
@@ -615,6 +638,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22AFBB342A9DFFD90001D463 /* GridView.swift in Sources */,
+				22AFBB232A97570A0001D463 /* ForecastModelStorage.swift in Sources */,
 				22A4D0AC2A431F2400A06E4F /* NetworkRequestModel.swift in Sources */,
 				22A4D0A42A42EE5E00A06E4F /* NetworkManager.swift in Sources */,
 				2286FBC32A8E9B8E00AB07CD /* BaseChildView.swift in Sources */,
@@ -624,12 +649,14 @@
 				228127F52A65D3B000C3ECFF /* Colors.swift in Sources */,
 				225CD88F2A8C067E00B9C209 /* NibDesignable.swift in Sources */,
 				22CA47AF2A8FE3E2005E9A9F /* DetailsModel.swift in Sources */,
+				22AFBB292A9D25770001D463 /* LineGraphForecastView.swift in Sources */,
 				225CD89F2A8E1AFC00B9C209 /* DetailsView.swift in Sources */,
 				22AFBB1D2A92AEBA0001D463 /* BaseParentController.swift in Sources */,
 				22A4D0862A40827800A06E4F /* Coordinator.swift in Sources */,
 				22A4D0702A40802B00A06E4F /* AppDelegate.swift in Sources */,
 				2286FBC02A8E86B800AB07CD /* BaseChildController.swift in Sources */,
 				22A4D09D2A41AE7F00A06E4F /* TableView+ReusableCell.swift in Sources */,
+				22AFBB302A9DFA9D0001D463 /* YAxisView.swift in Sources */,
 				22A4D08F2A41AC0300A06E4F /* ForecastViewController.swift in Sources */,
 				225CD8A52A8E235100B9C209 /* UIViewController+Extension.swift in Sources */,
 				228127F72A65D3B000C3ECFF /* L10n-Constants.swift in Sources */,
@@ -638,6 +665,7 @@
 				22A4D0AF2A4324F000A06E4F /* ServerConstants.swift in Sources */,
 				22A4D09B2A41AE5A00A06E4F /* UViewController+ViewCast.swift in Sources */,
 				22B80CAD2A711976006DE713 /* DateFormatter+Extensions.swift in Sources */,
+				22AFBB322A9DFBB30001D463 /* XAxisView.swift in Sources */,
 				22A4D0B12A4325E600A06E4F /* F.swift in Sources */,
 				22B80CB22A727DF4006DE713 /* TimeConverter.swift in Sources */,
 				2286FBC72A8F874E00AB07CD /* DetailsCollectionViewCell.swift in Sources */,

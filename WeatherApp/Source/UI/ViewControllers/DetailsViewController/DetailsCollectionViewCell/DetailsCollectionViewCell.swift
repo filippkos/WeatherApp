@@ -54,6 +54,7 @@ class DetailsCollectionViewCell: UICollectionViewCell {
         self.titleStackView.axis = .horizontal
         self.mainStackView.distribution = .fillProportionally
         self.titleStackView.distribution = .fillProportionally
+        self.mainStackView.spacing = 8
         self.titleStackView.spacing = 8
         self.addSubview(self.mainStackView)
         self.mainStackView.addArrangedSubview(self.titleStackView)
