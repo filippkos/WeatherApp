@@ -38,12 +38,12 @@ class DetailsViewController: BaseChildController, UICollectionViewDataSource, UI
     }
     
     func bind() {
-        self.list.bind { [weak self] in
+        self.storage.list.bind { [weak self] in
             self?.days = $0.splitArray(step: 8, firstStep: self?.getTodayPeriodsCount(model: $0) ?? 0)
         }
         .disposed(by: self.dispose)
         
-        self.parentController?.selectedDay.bind { [weak self] _ in
+        self.storage.selectedDay.bind { [weak self] _ in
             self?.rootView?.collectionView.reloadData()
         }
         .disposed(by: self.dispose)
@@ -71,13 +71,24 @@ class DetailsViewController: BaseChildController, UICollectionViewDataSource, UI
         if indexPath == IndexPath(row: 0, section: 1) {
             cell.container.subviews.forEach({ $0.removeFromSuperview() })
             let hourlyForecastView = HourlyForecastView()
-            hourlyForecastView.setup(for: self.parentController?.selectedDay.value ?? [])
+            hourlyForecastView.setup(for: self.storage.selectedDay.value)
             cell.container.addSubview(hourlyForecastView)
             hourlyForecastView.snp.makeConstraints {
                 $0.left.right.top.bottom.equalToSuperview()
             }
             hourlyForecastView.reloadData()
         }
+        
+        if indexPath == IndexPath(row: 1, section: 1) {
+            cell.container.subviews.forEach({ $0.removeFromSuperview() })
+            let lineGraphView = LineGraphForecastView()
+            cell.container.addSubview(lineGraphView)
+            lineGraphView.configure(day: self.storage.selectedDay.value)
+            lineGraphView.snp.makeConstraints {
+                $0.left.right.top.bottom.equalToSuperview()
+            }
+        }
+        
         return cell
     }
     

@@ -47,6 +47,8 @@ public extension DateFormatter {
                     return "dd MMM yyyy"
                 case .fullWordDate:
                     return "dd MMMM yyyy"
+                case .dayOfWeek:
+                    return "EEEE"
                 }
             case .fullTimeAndDate:
                 return "dd MMMM yyyy HH:mm:ss"
@@ -72,6 +74,7 @@ public extension DateFormatter {
         case slashNumDate
         case shortWordDate
         case fullWordDate
+        case dayOfWeek
     }
     
     static func customDateFormatter(

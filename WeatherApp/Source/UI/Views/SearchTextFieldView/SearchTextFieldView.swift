@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 @IBDesignable
-class SearchTextFieldView: UIView {
+final class SearchTextFieldView: UIView {
     
     var textField = UITextField()
     var resultLabel = UILabel()

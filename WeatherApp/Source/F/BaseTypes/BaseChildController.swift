@@ -21,16 +21,20 @@ class BaseChildController: UIViewController {
     // MARK: -
     // MARK: Variables
     
+    var storage: ForecastModelStorage
+    var castedParent: BaseParentController {
+        return self.parent as! BaseParentController
+    }
+    
     let type: ChildControllerType
-    var list: BehaviorRelay<[Period]> = BehaviorRelay(value: [])
-    var parentController: ContainerViewController?
+
     
     // MARK: -
     // MARK: Init
     
-    init(type: ChildControllerType, parent: ContainerViewController) {
+    init(storage: ForecastModelStorage, type: ChildControllerType) {
+        self.storage = storage
         self.type = type
-        self.parentController = parent
         
         super.init(nibName: nil, bundle: nil)
     }

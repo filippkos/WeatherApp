@@ -27,9 +27,11 @@ class Coordinator {
     // MARK: Private
     
     private func prepareContainerViewController() {
-        let containerController = ContainerViewController()
-        let detailsController = DetailsViewController(type: .details, parent: containerController)
-        let forecastController = ForecastViewController(type: .forecast, parent: containerController)
+        let storage = ForecastModelStorage()
+        
+        let containerController = ContainerViewController(storage: storage)
+        let detailsController = DetailsViewController(storage: storage, type: .details)
+        let forecastController = ForecastViewController(storage: storage, type: .forecast)
         
         containerController.add(detailsController)
         containerController.add(forecastController)

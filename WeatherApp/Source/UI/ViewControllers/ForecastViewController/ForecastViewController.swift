@@ -40,7 +40,7 @@ class ForecastViewController: BaseChildController, UICollectionViewDataSource, U
     }
     
     func bind() {
-        self.list.bind { [weak self] in
+        self.storage.list.bind { [weak self] in
             self?.days = $0.splitArray(step: 8, firstStep: self?.getTodayPeriodsCount(model: $0) ?? 0)
         }
         .disposed(by: self.dispose)
@@ -69,7 +69,7 @@ class ForecastViewController: BaseChildController, UICollectionViewDataSource, U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.parentController?.selectedDay.accept(self.parentController?.days[indexPath.row] ?? [])
-        self.parentController?.showChildController(.details)
+        self.storage.selectedDay.accept(self.storage.days[indexPath.row])
+        self.castedParent.showChildController(.details)
     }
 }

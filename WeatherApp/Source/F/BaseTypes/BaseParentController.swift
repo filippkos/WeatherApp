@@ -14,11 +14,28 @@ class BaseParentController: UIViewController {
     // MARK: -
     // MARK: Variables
     
-    var city: String = ""
-    var id: String = ""
-    var list: [Period] = []
-    var days: [[Period]] = []
-    var currentDay: [Period] = []
-    var selectedDay: BehaviorRelay<[Period]> = BehaviorRelay(value: [])
-    var childControllers: [BaseChildController] = []
+    var storage: ForecastModelStorage
+    var castedChildren: [BaseChildController] {
+        return self.children as! [BaseChildController]
+    }
+    
+    // MARK: -
+    // MARK: Init
+    
+    init(storage: ForecastModelStorage) {
+        self.storage = storage
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: -
+    // MARK: Public
+    
+    func showChildController(_ type: ChildControllerType) {
+        
+    }
 }

@@ -13,6 +13,10 @@ public final class TemperatureConverter {
         return Int(kelvin - 273)
     }
     
+    public static func roundedDoubleCelsius(from kelvin: Double) -> Double {
+        return kelvin - 273
+    }
+    
     public static func stringCelsius(from kelvin: Double) -> String {
         return "\(Int(kelvin - 273))°"
     }
