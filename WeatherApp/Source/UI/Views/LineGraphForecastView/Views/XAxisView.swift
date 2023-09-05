@@ -34,15 +34,11 @@ final class XAxisView: UIView {
     
     private func markLabel(with text: String) -> UILabel {
         let label = UILabel()
-        label.font = Fonts.SFProDisplay.regular.font(size: 16)
+        label.font = Fonts.SFProDisplay.regular.font(size: 12)
         label.textColor = Colors.matteGrey.color
         label.textAlignment = .center
         label.text = text
         
         return label
-    }
-    
-    private func scale() {
-        
     }
 }

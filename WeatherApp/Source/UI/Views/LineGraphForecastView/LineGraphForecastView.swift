@@ -38,10 +38,13 @@ final class LineGraphForecastView: UIView {
     func configure(day: [Period]) {
 
         let temps = day.map { TemperatureConverter.roundedDoubleCelsius(from: $0.main.temp) }
+        
         let roundedMaxTemp = 10 * (ceil((temps.max() ?? 0) / 10) + 1)
         let roundedMinTemp = 10 * (floor((temps.max() ?? 0) / 10) - 1)
+        
         var yAxisData: [String] = []
         var buffer = Int(roundedMinTemp)
+        
         (Int(roundedMinTemp / 10)...Int(roundedMaxTemp / 10)).forEach { _ in
             yAxisData.append(Int(buffer).description)
             buffer += 10
@@ -49,6 +52,7 @@ final class LineGraphForecastView: UIView {
         yAxisData = yAxisData.reversed()
         
         self.yAxisView.configure(data: yAxisData)
+        
         self.gridView.configure(data: temps, min: roundedMinTemp, max: roundedMaxTemp, num: yAxisData.count - 1)
         
         let xAxisData = day.map {
