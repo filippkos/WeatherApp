@@ -43,7 +43,7 @@ final class SearchTextFieldView: UIView {
     func setupTextField() {
         self.textField.font = Fonts.SFProDisplay.regular.font(size: 22)
         self.textField.attributedPlaceholder = NSAttributedString(
-            string: "Riga",
+            string: "",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]
         )
     }

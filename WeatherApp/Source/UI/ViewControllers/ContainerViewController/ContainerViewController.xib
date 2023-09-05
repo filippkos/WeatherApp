@@ -24,8 +24,8 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gt3-Ys-Loz">
-                    <rect key="frame" x="16" y="59.000000000000014" width="361" height="196.33333333333337"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gt3-Ys-Loz">
+                    <rect key="frame" x="16" y="59" width="361" height="280.33333333333331"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xl9-K8-RWY" customClass="SearchTextFieldView" customModule="WeatherApp" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
@@ -35,27 +35,39 @@
                             </constraints>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rv2-fB-zWx">
-                            <rect key="frame" x="0.0" y="50" width="361" height="112"/>
+                            <rect key="frame" x="0.0" y="58" width="361" height="180"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3OX-md-LrC" userLabel="Temperature Label">
-                                    <rect key="frame" x="0.0" y="0.0" width="131" height="112"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="131" height="180"/>
                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="57"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8k-TS-ya8" userLabel="Weather Label">
-                                    <rect key="frame" x="131" y="0.0" width="55.333333333333343" height="112"/>
-                                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="24"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QhP-Vl-3i1">
+                                    <rect key="frame" x="131" y="0.0" width="50" height="180"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5yx-b9-UiJ" userLabel="Spacer">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="97"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8k-TS-ya8" userLabel="Weather Label">
+                                            <rect key="frame" x="0.0" y="97" width="50" height="83"/>
+                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="aRB-rC-ACg">
-                                    <rect key="frame" x="186.33333333333337" y="0.0" width="174.66666666666663" height="112"/>
+                                    <rect key="frame" x="181" y="0.0" width="180" height="180"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="aRB-rC-ACg" secondAttribute="height" multiplier="1:1" id="a5a-Yh-9gX"/>
+                                    </constraints>
                                 </imageView>
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="taP-BB-On2">
-                            <rect key="frame" x="0.0" y="162" width="361" height="34.333333333333343"/>
+                            <rect key="frame" x="0.0" y="246.00000000000003" width="361" height="34.333333333333343"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHr-iR-z6I">
                                     <rect key="frame" x="0.0" y="0.0" width="115" height="34.333333333333336"/>
@@ -78,7 +90,7 @@
                     </subviews>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M8G-bC-pIs">
-                    <rect key="frame" x="16" y="271.33333333333331" width="361" height="530.66666666666674"/>
+                    <rect key="frame" x="16" y="355.33333333333326" width="361" height="446.66666666666674"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
             </subviews>
@@ -102,7 +114,7 @@
                 <outlet property="tomorrowButton" destination="JgO-oM-KX2" id="U5V-6E-Jqy"/>
                 <outlet property="weatherLabel" destination="v8k-TS-ya8" id="HHl-oy-W4Y"/>
             </connections>
-            <point key="canvasLocation" x="50" y="21"/>
+            <point key="canvasLocation" x="49.618320610687022" y="20.422535211267608"/>
         </view>
     </objects>
     <resources>

@@ -26,6 +26,7 @@ class ContainerView: UIView {
 
     func configureDefault(cityName: String, selectedDay: [Period]) {
         self.temperatureLabel.text = TemperatureConverter.stringCelsius(from: selectedDay.first?.main.temp ?? 0)
+        self.textFieldView.textField.placeholder = cityName
         self.weatherLabel.text = selectedDay.first?.weather.first?.main.rawValue ?? ""
         self.configureButtons()
     }
