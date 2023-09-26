@@ -15,11 +15,11 @@ public final class TimeConverter {
 
     /// 26 Jun 2023
     public static func getStringDate(from timeStamp: Int) -> String {
-        return DateFormatter.customDateFormatter(format: .date(format: .fullWordDate)).string(from: NSDate(timeIntervalSince1970: TimeInterval(timeStamp)) as Date)
+        return DateFormatter.custom(format: .fullDate(format: .numDate(separator: " "))).string(from: NSDate(timeIntervalSince1970: TimeInterval(timeStamp)) as Date)
     }
     
     /// 00:00
     public static func getStringTime(from timeStamp: Int) -> String {
-        return DateFormatter.customDateFormatter(format: .time(withOnly: .hoursAndMinutes)).string(from: NSDate(timeIntervalSince1970: TimeInterval(timeStamp)) as Date)
+        return DateFormatter.custom(format: .time(withOnly: [.hours, .minutes])).string(from: NSDate(timeIntervalSince1970: TimeInterval(timeStamp)) as Date)
     }
 }

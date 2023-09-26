@@ -37,7 +37,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rv2-fB-zWx">
                             <rect key="frame" x="0.0" y="58" width="361" height="180"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3OX-md-LrC" userLabel="Temperature Label">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3OX-md-LrC" userLabel="Temperature Label">
                                     <rect key="frame" x="0.0" y="0.0" width="131" height="180"/>
                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="57"/>
                                     <nil key="textColor"/>
@@ -47,11 +47,11 @@
                                     <rect key="frame" x="131" y="0.0" width="50" height="180"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5yx-b9-UiJ" userLabel="Spacer">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="97"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="159.66666666666666"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="center" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8k-TS-ya8" userLabel="Weather Label">
-                                            <rect key="frame" x="0.0" y="97" width="50" height="83"/>
+                                            <rect key="frame" x="0.0" y="159.66666666666669" width="50" height="20.333333333333343"/>
                                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
