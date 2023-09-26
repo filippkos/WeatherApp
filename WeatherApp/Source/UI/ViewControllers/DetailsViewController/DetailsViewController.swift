@@ -51,7 +51,7 @@ class DetailsViewController: BaseChildController, UICollectionViewDataSource, UI
     
     func getTodayPeriodsCount(model: [Period]) -> Int {
         let date = NSDate(timeIntervalSince1970: TimeInterval(model.first?.dt ?? 0))
-        let hours = DateFormatter.customDateFormatter(format: .time(withOnly: .hours)).string(from: date as Date)
+        let hours = DateFormatter.custom(format: .time(withOnly: .hours)).string(from: date as Date)
         
         return (24 - (Int(hours) ?? 0)) / 3
     }
