@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ForecastViewController: BaseChildController, UICollectionViewDataSource, UICollectionViewDelegate, RootViewGettable {
+final class ForecastViewController: BaseChildController, UICollectionViewDataSource, UICollectionViewDelegate, RootViewGettable {
     
     // MARK: -
     // MARK: Typealiases

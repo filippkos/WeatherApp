@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ContainerView: UIView {
+final class ContainerView: UIView {
 
     // MARK: Localization
     

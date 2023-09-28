@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import SnapKit
 
-class DetailsViewController: BaseChildController, UICollectionViewDataSource, UICollectionViewDelegate, RootViewGettable {
+final class DetailsViewController: BaseChildController, RootViewGettable {
     
     // MARK: -
     // MARK: RootView
@@ -20,6 +20,7 @@ class DetailsViewController: BaseChildController, UICollectionViewDataSource, UI
     // MARK: Variables
     
     var days: [[Period]] = []
+    var dataSource: UICollectionViewDiffableDataSource<DetailsSection, DetailsItem>?
     
     private let dispose = DisposeBag()
     
@@ -28,13 +29,77 @@ class DetailsViewController: BaseChildController, UICollectionViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.rootView?.collectionView.dataSource = self
-        self.rootView?.collectionView.delegate = self
-        self.rootView?.collectionView.registerDefaultCell(cellClass: DetailsCollectionViewCell.self)
-        self.rootView?.compositionalLayoutConfigure()
-        self.rootView?.collectionView.showsVerticalScrollIndicator = false
+
+        self.rootView?.collectionView.registerDefaultCell(cellClass: DetailsInfographicsCollectionViewCell.self)
+        self.rootView?.collectionView.registerDefaultCell(cellClass: DetailsConditionCollectionViewCell.self)
+        self.rootView?.configure()
+        self.rootView?.setup()
+        self.createDataSource()
+        self.reloadData()
         self.bind()
+    }
+
+    func createDataSource() {
+        self.dataSource = UICollectionViewDiffableDataSource<DetailsSection, DetailsItem>(collectionView: self.rootView?.collectionView ?? UICollectionView(), cellProvider: { collectionView, indexPath, itemIdentifier in
+            switch self.rootView?.sections[indexPath.section].type {
+            case .conditions:
+                let item = self.rootView?.sections[indexPath.section].items[indexPath.row]
+                let cell = self.rootView?.collectionView.dequeueReusableCell(cellClass: DetailsConditionCollectionViewCell.self, indexPath: indexPath) ?? DetailsConditionCollectionViewCell()
+                cell.container.subviews.forEach({ $0.removeFromSuperview() })
+                let conditionView = ConditionView()
+                conditionView.configure()
+                cell.container.addSubview(conditionView)
+                conditionView.snp.makeConstraints {
+                    $0.left.right.top.bottom.equalToSuperview()
+                }
+                cell.configure(with: item?.title ?? "")
+                return cell
+            case .infographics:
+                let item = self.rootView?.sections[indexPath.section].items[indexPath.row]
+                switch item?.type {
+                case .some(.hourlyForecast):
+                    let cell = self.rootView?.collectionView.dequeueReusableCell(cellClass: DetailsInfographicsCollectionViewCell.self, indexPath: indexPath) ?? DetailsInfographicsCollectionViewCell()
+                    cell.container.subviews.forEach({ $0.removeFromSuperview() })
+                    let hourlyForecastView = HourlyForecastView()
+                    hourlyForecastView.setup(for: self.storage.selectedDay.value)
+                    cell.container.addSubview(hourlyForecastView)
+                    hourlyForecastView.snp.makeConstraints {
+                        $0.left.right.top.bottom.equalToSuperview()
+                    }
+                    hourlyForecastView.reloadData()
+                    cell.configure(with: item?.title ?? "")
+                    return cell
+                case .some(.lineChart):
+                    let cell = self.rootView?.collectionView.dequeueReusableCell(cellClass: DetailsInfographicsCollectionViewCell.self, indexPath: indexPath) ?? DetailsInfographicsCollectionViewCell()
+                    cell.container.subviews.forEach({ $0.removeFromSuperview() })
+                    let lineGraphView = LineGraphForecastView()
+                    cell.container.addSubview(lineGraphView)
+                    lineGraphView.configure(day: self.storage.selectedDay.value)
+                    lineGraphView.snp.makeConstraints {
+                        $0.left.right.top.bottom.equalToSuperview()
+                    }
+                    cell.configure(with: item?.title ?? "")
+                    return cell
+                case .some(.condition):
+                    return nil
+                case .none:
+                    return nil
+                }
+            case .none:
+                return nil
+            }
+        })
+    }
+
+    func reloadData() {
+        var snapshot = NSDiffableDataSourceSnapshot<DetailsSection, DetailsItem>()
+        snapshot.appendSections(self.rootView?.sections ?? [])
+
+        for section in self.rootView?.sections ?? [] {
+            snapshot.appendItems(section.items, toSection: section)
+        }
+
+        self.dataSource?.apply(snapshot)
     }
     
     func bind() {
@@ -54,45 +119,5 @@ class DetailsViewController: BaseChildController, UICollectionViewDataSource, UI
         let hours = DateFormatter.custom(format: .time(withOnly: .hours)).string(from: date as Date)
         
         return (24 - (Int(hours) ?? 0)) / 3
-    }
-    
-    // MARK: -
-    // MARK: UITableView DataSource
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        4
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell: DetailsCollectionViewCell
-        cell = self.rootView?.collectionView.dequeueReusableCell(cellClass: DetailsCollectionViewCell.self, indexPath: indexPath) ?? DetailsCollectionViewCell()
-        cell.titleLabel.text = "Hourly forecast"
-        
-        if indexPath == IndexPath(row: 0, section: 1) {
-            cell.container.subviews.forEach({ $0.removeFromSuperview() })
-            let hourlyForecastView = HourlyForecastView()
-            hourlyForecastView.setup(for: self.storage.selectedDay.value)
-            cell.container.addSubview(hourlyForecastView)
-            hourlyForecastView.snp.makeConstraints {
-                $0.left.right.top.bottom.equalToSuperview()
-            }
-            hourlyForecastView.reloadData()
-        }
-        
-        if indexPath == IndexPath(row: 1, section: 1) {
-            cell.container.subviews.forEach({ $0.removeFromSuperview() })
-            let lineGraphView = LineGraphForecastView()
-            cell.container.addSubview(lineGraphView)
-            lineGraphView.configure(day: self.storage.selectedDay.value)
-            lineGraphView.snp.makeConstraints {
-                $0.left.right.top.bottom.equalToSuperview()
-            }
-        }
-        
-        return cell
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        3
     }
 }

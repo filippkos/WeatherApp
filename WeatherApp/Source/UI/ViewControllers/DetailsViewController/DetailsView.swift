@@ -7,61 +7,97 @@
 
 import UIKit
 
-class DetailsView: BaseChildView {
+enum SectionType {
+    case conditions
+    case infographics
+}
+
+enum ItemType {
+    case condition
+    case hourlyForecast
+    case lineChart
+}
+
+struct DetailsSection: Hashable {
+    let type: SectionType
+    let items: [DetailsItem]
+}
+
+struct DetailsItem: Hashable {
+    let type: ItemType
+    let title: String
+}
+
+final class DetailsView: BaseChildView {
+    
+    // MARK: -
+    // MARK: Localization
+    
+    typealias Loc = L10n.DetailsView
+    
+    // MARK: -
+    // MARK: Variables
+    
+    var sections: [DetailsSection] = []
 
     // MARK: -
     // MARK: Public
     
-    func configure(model: [Period]) {
-        
+    func setup() {
+        self.collectionView.collectionViewLayout = self.createCompositionalLayout()
+        self.collectionView.showsVerticalScrollIndicator = false
     }
     
-    enum Section: Int, CaseIterable {
-        case list
-        case grid
-        case grid2
-
-        var columnCount: Int {
-            switch self {
-            case .grid:
-                return 1
-            case .list:
-                return 2
-            case .grid2:
-                return 2
+    func configure() {
+        
+        self.sections.append(DetailsSection(type: .conditions, items: [
+            DetailsItem(type: .condition, title: Loc.windSpeedTitle),
+            DetailsItem(type: .condition, title: Loc.rainChanceTitle),
+            DetailsItem(type: .condition, title: Loc.pressureTitle),
+            DetailsItem(type: .condition, title: Loc.humidityTitle)
+        ]))
+        self.sections.append(DetailsSection(type: .infographics, items: [
+            DetailsItem(type: .hourlyForecast, title: Loc.hourlyForecastTitle),
+            DetailsItem(type: .lineChart, title: Loc.lineChartTitle),
+            DetailsItem(type: .lineChart, title: "Empty Cell"),
+            DetailsItem(type: .lineChart, title: "Empty Cell2")
+        ]))
+    }
+    
+    func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+            let section = self.sections[sectionIndex]
+           
+            switch section.type {
+            case .conditions:
+                return self.createConditionsSection()
+            case .infographics:
+                return self.createInfographicsSection()
             }
         }
+        
+        return layout
     }
     
-    func compositionalLayoutConfigure() {
-        let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-
-            guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
-            let columns = sectionKind.columnCount
-
-            let itemSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(1.0))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
-
-            let groupHeight = columns == 1 ?
-                NSCollectionLayoutDimension.estimated(180) :
-                NSCollectionLayoutDimension.fractionalWidth(0.3)
-
-            let groupSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: groupHeight)
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columns)
-            group.interItemSpacing = .fixed(16)
-
-            let section = NSCollectionLayoutSection(group: group)
-            section.interGroupSpacing = 16
-            section.contentInsets = .init(top: 16, leading: 0, bottom: 0, trailing: 0)
-            
-            return section
-        }
+    func createConditionsSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .absolute(90))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 4, bottom: 4, trailing: 4)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
         
-        self.collectionView.collectionViewLayout = layout
+        return section
+    }
+    
+    func createInfographicsSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(200))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 4, bottom: 4, trailing: 4)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        
+        return section
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class DetailsCollectionViewCell: UICollectionViewCell {
+class DetailsInfographicsCollectionViewCell: UICollectionViewCell {
     
     // MARK: -
     // MARK: Variables
@@ -47,6 +47,10 @@ class DetailsCollectionViewCell: UICollectionViewCell {
         
         self.addViews()
         self.addConstraints()
+    }
+    
+    func configure(with title: String) {
+        self.titleLabel.text = title
     }
     
     func addViews() {

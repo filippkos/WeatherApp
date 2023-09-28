@@ -14,7 +14,7 @@ enum ContainerViewControllerOutputEvents {
     case needShowDetails
 }
 
-class ContainerViewController: BaseParentController, RootViewGettable, UITextFieldDelegate {
+final class ContainerViewController: BaseParentController, RootViewGettable, UITextFieldDelegate {
         
     // MARK: -
     // MARK: Typealiases

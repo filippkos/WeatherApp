@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class HourlyForecastView: UICollectionView, UICollectionViewDataSource, UICollectionViewDelegate {
+final class HourlyForecastView: UICollectionView, UICollectionViewDataSource, UICollectionViewDelegate {
 
     var arrayOfViews: [UIView] = []
     var model: [Period] = []
