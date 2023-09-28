@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ForecastView: BaseChildView {
+final class ForecastView: BaseChildView {
     
     // MARK: -
     // MARK: Public

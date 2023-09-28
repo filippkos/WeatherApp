@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class HourlyForecastViewCell: UICollectionViewCell {
+final class HourlyForecastViewCell: UICollectionViewCell {
 
     @IBOutlet var timeLabel: UILabel?
     @IBOutlet var weatherIcon: UIImageView?
