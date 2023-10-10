@@ -9,11 +9,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-enum ContainerViewControllerOutputEvents {
-    case needShowForecast
-    case needShowDetails
-}
-
 final class ContainerViewController: BaseParentController, RootViewGettable, UITextFieldDelegate {
         
     // MARK: -
@@ -23,8 +18,6 @@ final class ContainerViewController: BaseParentController, RootViewGettable, UIT
     
     // MARK: -
     // MARK: Variables
-    
-    public var outputEvents: F.VoidFunc<ContainerViewControllerOutputEvents>?
     
     private let dispose = DisposeBag()
     
@@ -37,13 +30,14 @@ final class ContainerViewController: BaseParentController, RootViewGettable, UIT
         self.rootView?.textFieldView.textField.delegate = self
         self.storage.forecast(cityID: "3874930") { model in
             DispatchQueue.main.async {
-                self.rootView?.configureDefault(cityName: model.city.name, selectedDay: self.storage.currentDay )
+                self.rootView?.configureDefault(cityName: model.city.name, selectedDay: self.storage.currentDay)
                 self.castedChildren.forEach {
                     ($0.view as! BaseChildView).collectionView.reloadData()
                 }
             }
         }
         self.bind()
+        self.updateButtonsState()
     }
     
     override func showChildController(_ type: ChildControllerType) {
@@ -57,6 +51,26 @@ final class ContainerViewController: BaseParentController, RootViewGettable, UIT
 
     // MARK: -
     // MARK: Private
+    
+    override func updateButtonsState() {
+        super.updateButtonsState()
+        
+        self.rootView?.buttons.forEach {
+            $0.backgroundColor = .white
+        }
+        
+        if type(of: self.rootView?.contentView.subviews.first ?? UIView()) === DetailsView.self {
+            if self.storage.selectedDate() == self.storage.currentDate() {
+                self.rootView?.todayButton.backgroundColor = Colors.cellBackgroundGreen.color
+            } else if self.storage.selectedDate() == self.storage.tomorrowDate() {
+                self.rootView?.tomorrowButton.backgroundColor = Colors.cellBackgroundGreen.color
+            } else {
+                return
+            }
+        } else {
+            self.rootView?.forecastButton.backgroundColor = Colors.cellBackgroundGreen.color
+        }
+    }
     
     private func bind() {
         
@@ -95,6 +109,7 @@ final class ContainerViewController: BaseParentController, RootViewGettable, UIT
             .bind { [weak self] in
                 self?.storage.selectedDay.accept(self?.storage.days[0] ?? [] )
                 self?.showChildController(.details)
+                self?.updateButtonsState()
             }
             .disposed(by: self.dispose)
         
@@ -104,6 +119,7 @@ final class ContainerViewController: BaseParentController, RootViewGettable, UIT
             .bind { [weak self] in
                 self?.storage.selectedDay.accept(self?.storage.days[1] ?? [])
                 self?.showChildController(.details)
+                self?.updateButtonsState()
             }
             .disposed(by: self.dispose)
         
@@ -112,11 +128,11 @@ final class ContainerViewController: BaseParentController, RootViewGettable, UIT
             .tap
             .bind { [weak self] in
                 self?.showChildController(.forecast)
+                self?.updateButtonsState()
             }
             .disposed(by: self.dispose)
     }
 
-    
     func prepareRequestModel(id: String) -> NetworkRequestModel {
         let params = ["id" : id, "appid" : "83b161664a26ce94b708c5723c38496c"]
         

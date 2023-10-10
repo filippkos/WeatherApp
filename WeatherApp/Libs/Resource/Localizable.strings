@@ -14,7 +14,7 @@
 "container_view.forecast" = "Forecast";
 
 "details_view.wind_speed_title" = "Wind speed";
-"details_view.rain_chance_title" = "Rain chance";
+"details_view.rain_volume_title" = "Rain volume";
 "details_view.pressure_title" = "Pressure";
 "details_view.humidity_title" = "Humidity";
 "details_view.hourly_forecast_title" = "Hourly forecast";

@@ -43,6 +43,19 @@ class ForecastModelStorage {
         }
     }
     
+    func selectedDate() -> String {
+        return TimeConverter.getStringDate(from: self.selectedDay.value.first?.dt ?? 0)
+    }
+    
+    func currentDate() -> String {
+        return TimeConverter.getStringDate(from: Int(Date().timeIntervalSince1970))
+    }
+    
+    func tomorrowDate() -> String {
+        let date = Calendar.current.date(byAdding: .day, value: 1, to: Date())
+        return TimeConverter.getStringDate(from: Int(date?.timeIntervalSince1970 ?? 0))
+    }
+    
     private func prepareRequestModel(id: String) -> NetworkRequestModel {
         let params = ["id" : id, "appid" : "83b161664a26ce94b708c5723c38496c"]
         

@@ -35,6 +35,10 @@ class BaseParentController: UIViewController {
     // MARK: -
     // MARK: Public
     
+    func updateButtonsState() {
+        
+    }
+    
     func showChildController(_ type: ChildControllerType) {
         
     }
