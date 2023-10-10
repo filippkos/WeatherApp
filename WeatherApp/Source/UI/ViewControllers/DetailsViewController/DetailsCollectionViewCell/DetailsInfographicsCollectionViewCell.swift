@@ -42,15 +42,16 @@ class DetailsInfographicsCollectionViewCell: UICollectionViewCell {
         self.backgroundColor = Colors.cellBackgroundGreen.color
         self.layer.cornerRadius = 18
         self.titleLabel.font = Fonts.SFProDisplay.regular.font(size: 14)
-        self.titleImage.image = UIImage(systemName: "wind")
+
         self.titleImage.tintColor = .black
         
         self.addViews()
         self.addConstraints()
     }
     
-    func configure(with title: String) {
+    func configure(with title: String, image: String) {
         self.titleLabel.text = title
+        self.titleImage.image = UIImage(systemName: image)
     }
     
     func addViews() {

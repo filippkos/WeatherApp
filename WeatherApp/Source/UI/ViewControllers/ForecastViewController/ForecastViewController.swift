@@ -71,5 +71,6 @@ final class ForecastViewController: BaseChildController, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.storage.selectedDay.accept(self.storage.days[indexPath.row])
         self.castedParent.showChildController(.details)
+        self.castedParent.updateButtonsState()
     }
 }

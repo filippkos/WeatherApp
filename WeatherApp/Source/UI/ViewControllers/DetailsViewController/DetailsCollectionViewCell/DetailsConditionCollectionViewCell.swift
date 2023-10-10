@@ -16,6 +16,7 @@ class DetailsConditionCollectionViewCell: UICollectionViewCell {
     var mainStackView = UIStackView()
     var titleStackView = UIStackView()
     var titleImageBackground = UIView()
+    var titleImageContainer = UIView()
     var titleImage = UIImageView()
     var titleLabel = UILabel()
     var container = UIView()
@@ -42,33 +43,32 @@ class DetailsConditionCollectionViewCell: UICollectionViewCell {
         self.backgroundColor = Colors.cellBackgroundGreen.color
         self.layer.cornerRadius = 18
         self.titleLabel.font = Fonts.SFProDisplay.regular.font(size: 14)
-        self.titleImage.image = UIImage(systemName: "water.waves")
+
         self.titleImage.tintColor = .black
         
         self.addViews()
         self.addConstraints()
     }
     
-    func configure(with title: String) {
+    func configure(with title: String, image: String) {
         self.titleLabel.text = title
+        self.titleImage.image = UIImage(systemName: image)
     }
     
     func addViews() {
-        self.mainStackView.axis = .vertical
-        self.titleStackView.axis = .horizontal
-        self.mainStackView.distribution = .fillProportionally
+        self.mainStackView.axis = .horizontal
+        self.titleStackView.axis = .vertical
+        self.mainStackView.distribution = .fill
         self.titleStackView.distribution = .fillProportionally
         self.mainStackView.spacing = 8
         self.titleStackView.spacing = 8
         self.addSubview(self.mainStackView)
-        self.mainStackView.addArrangedSubview(self.titleStackView)
-        self.mainStackView.addArrangedSubview(self.container)
-        self.titleStackView.addArrangedSubview(self.titleImageBackground)
         self.titleImageBackground.addSubview(self.titleImage)
+        self.titleImageContainer.addSubview(self.titleImageBackground)
+        self.mainStackView.addArrangedSubview(self.titleImageContainer)
+        self.mainStackView.addArrangedSubview(self.titleStackView)
         self.titleStackView.addArrangedSubview(self.titleLabel)
-
-        self.titleImageBackground.setContentCompressionResistancePriority(.defaultHigh,for: .vertical)
-        self.container.setContentCompressionResistancePriority(.defaultLow,for: .vertical)
+        self.titleStackView.addArrangedSubview(self.container)
     }
     
     func addConstraints() {
@@ -76,16 +76,11 @@ class DetailsConditionCollectionViewCell: UICollectionViewCell {
             $0.left.right.equalToSuperview().inset(18)
             $0.top.bottom.equalToSuperview().inset(15)
         }
+        
         self.titleImageBackground.snp.makeConstraints {
             $0.width.height.equalTo(28)
-        }
-        
-        self.titleStackView.snp.makeConstraints {
-            $0.height.equalTo(28)
-        }
-        
-        self.container.snp.makeConstraints {
-            $0.height.equalTo(30)
+            $0.centerY.equalToSuperview()
+            $0.width.equalToSuperview()
         }
         
         self.titleImage.snp.makeConstraints {

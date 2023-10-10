@@ -23,6 +23,21 @@ final class ContainerView: UIView {
     @IBOutlet var tomorrowButton: UIButton!
     @IBOutlet var forecastButton: UIButton!
     @IBOutlet var contentView: UIView!
+    
+    // MARK: -
+    // MARK: Variables
+    
+    var buttons: [UIButton] = []
+    
+    // MARK: -
+    // MARK: Life Cycle
+    
+    override func awakeFromNib() {
+        self.buttons = [self.todayButton, self.tomorrowButton, self.forecastButton]
+    }
+    
+    // MARK: -
+    // MARK: Public
 
     func configureDefault(cityName: String, selectedDay: [Period]) {
         self.temperatureLabel.text = TemperatureConverter.stringCelsius(from: selectedDay.first?.main.temp ?? 0)
@@ -35,9 +50,6 @@ final class ContainerView: UIView {
         self.todayButton.layer.cornerRadius = 8
         self.tomorrowButton.layer.cornerRadius = 8
         self.forecastButton.layer.cornerRadius = 8
-        self.todayButton.backgroundColor = Colors.cellBackgroundGreen.color
-        self.tomorrowButton.backgroundColor = Colors.cellBackgroundGreen.color
-        self.forecastButton.backgroundColor = Colors.cellBackgroundGreen.color
         self.todayButton.tintColor = .black
         self.tomorrowButton.tintColor = .black
         self.forecastButton.tintColor = .black

@@ -7,27 +7,6 @@
 
 import UIKit
 
-enum SectionType {
-    case conditions
-    case infographics
-}
-
-enum ItemType {
-    case condition
-    case hourlyForecast
-    case lineChart
-}
-
-struct DetailsSection: Hashable {
-    let type: SectionType
-    let items: [DetailsItem]
-}
-
-struct DetailsItem: Hashable {
-    let type: ItemType
-    let title: String
-}
-
 final class DetailsView: BaseChildView {
     
     // MARK: -
@@ -51,16 +30,14 @@ final class DetailsView: BaseChildView {
     func configure() {
         
         self.sections.append(DetailsSection(type: .conditions, items: [
-            DetailsItem(type: .condition, title: Loc.windSpeedTitle),
-            DetailsItem(type: .condition, title: Loc.rainChanceTitle),
-            DetailsItem(type: .condition, title: Loc.pressureTitle),
-            DetailsItem(type: .condition, title: Loc.humidityTitle)
+            DetailsItem(type: .condition(type: .windSpeed)),
+            DetailsItem(type: .condition(type: .rainVolume)),
+            DetailsItem(type: .condition(type: .pressure)),
+            DetailsItem(type: .condition(type: .humidity))
         ]))
         self.sections.append(DetailsSection(type: .infographics, items: [
-            DetailsItem(type: .hourlyForecast, title: Loc.hourlyForecastTitle),
-            DetailsItem(type: .lineChart, title: Loc.lineChartTitle),
-            DetailsItem(type: .lineChart, title: "Empty Cell"),
-            DetailsItem(type: .lineChart, title: "Empty Cell2")
+            DetailsItem(type: .infographic(type: .hourlyForecast)),
+            DetailsItem(type: .infographic(type: .lineChart))
         ]))
     }
     
@@ -80,7 +57,7 @@ final class DetailsView: BaseChildView {
     }
     
     func createConditionsSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .absolute(90))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .absolute(80))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 4, bottom: 4, trailing: 4)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1))

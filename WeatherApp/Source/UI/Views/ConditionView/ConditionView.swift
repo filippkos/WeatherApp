@@ -42,9 +42,9 @@ final class ConditionView: UIView {
         self.addConstraints()
     }
     
-    func configure() {
-        self.valueLabel.text = "*****"
-        self.differenceLabel.text = "*****"
+    func configure(value: Double) {
+        self.valueLabel.text = value.description
+        self.differenceLabel.text = "0.00"
     }
     
     func addViews() {
@@ -54,11 +54,11 @@ final class ConditionView: UIView {
         self.differenceLabel.textAlignment = .right
         self.stackView = UIStackView(arrangedSubviews: [self.valueLabel, self.differenceLabel])
         self.addSubview(self.stackView)
-
     }
     
     func setupLabels() {
-        self.valueLabel.font = Fonts.SFProDisplay.regular.font(size: 22)
+        self.valueLabel.font = Fonts.SFProDisplay.regular.font(size: 16)
+        self.differenceLabel.font = Fonts.SFProDisplay.medium.font(size: 11)
     }
     
     func addConstraints() {
