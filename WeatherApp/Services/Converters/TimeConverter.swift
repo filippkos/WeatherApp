@@ -15,7 +15,7 @@ public final class TimeConverter {
 
     /// 26 Jun 2023
     public static func getStringDate(from timeStamp: Int) -> String {
-        return DateFormatter.custom(format: .fullDate(format: .numDate(separator: " "))).string(from: NSDate(timeIntervalSince1970: TimeInterval(timeStamp)) as Date)
+        return DateFormatter.custom(format: .date(withOnly: [.day, .wideMonth, .wideYear])).string(from: NSDate(timeIntervalSince1970: TimeInterval(timeStamp)) as Date)
     }
     
     /// 00:00

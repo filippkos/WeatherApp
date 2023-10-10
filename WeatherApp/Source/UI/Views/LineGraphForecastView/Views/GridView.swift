@@ -76,7 +76,7 @@ final class GridView: UIView {
         let path = UIBezierPath()
         
         var horizontalStep: CGFloat = 0
-        horizontalStep = CGFloat(Int(self.frame.width) / self.data.count - 1)
+        horizontalStep = CGFloat(Int(self.frame.width) / self.data.count)
 
         var p1 = CGPoint(x: horizontalStep / 2, y: self.yPositionFor(index: 0))
         path.move(to: p1)
@@ -84,7 +84,10 @@ final class GridView: UIView {
         self.drawPoint(point: p1, radius: 5, color: Colors.carrotOrange.color)
         
         if (self.data.count == 2) {
-            path.addLine(to: CGPoint(x: horizontalStep, y: self.yPositionFor(index: 1)))
+            let p2 = CGPoint(x: (horizontalStep * 1.5), y: self.yPositionFor(index: 1))
+            path.addLine(to: p2)
+            self.drawPoint(point: p2, radius: 5, color: Colors.carrotOrange.color)
+            
             return path
         }
         
