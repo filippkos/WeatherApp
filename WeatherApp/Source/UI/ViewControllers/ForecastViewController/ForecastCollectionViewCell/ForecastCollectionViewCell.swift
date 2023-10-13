@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ForecastCollectionViewCell: UICollectionViewCell {
+final class ForecastCollectionViewCell: UICollectionViewCell {
     
     // MARK: -
     // MARK: Variables

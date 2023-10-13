@@ -142,41 +142,30 @@ final class DetailsViewController: BaseChildController, RootViewGettable {
             case .conditions:
                 let item = self.rootView?.sections[indexPath.section].items[indexPath.row]
                 let cell = collectionView.dequeueConfiguredReusableCell(using: conditionCellRegistration, for: indexPath, item: [])
-                cell.container.subviews.forEach({ $0.removeFromSuperview() })
                 let conditionView = ConditionView()
                 conditionView.configure(value: self.averageValue(day: self.storage.selectedDay.value, item: item))
-                cell.container.addSubview(conditionView)
                 cell.configure(with: self.title(item: item), image: self.image(item: item))
-                conditionView.snp.makeConstraints {
-                    $0.left.right.top.bottom.equalToSuperview()
-                }
+                cell.configure(with: conditionView)
+                
                 return cell
             case .infographics:
-                
                 let item = self.rootView?.sections[indexPath.section].items[indexPath.row]
                 switch item?.type {
                 case .some(.infographic(.hourlyForecast)):
                     let cell = collectionView.dequeueConfiguredReusableCell(using: infographicCellRegistration, for: indexPath, item: [])
-                    cell.container.subviews.forEach({ $0.removeFromSuperview() })
                     let hourlyForecastView = HourlyForecastView()
-                    hourlyForecastView.setup(for: self.storage.selectedDay.value)
-                    cell.container.addSubview(hourlyForecastView)
                     cell.configure(with: self.title(item: item), image: self.image(item: item))
-                    hourlyForecastView.snp.makeConstraints {
-                        $0.left.right.top.bottom.equalToSuperview()
-                    }
-                    
+                    cell.configure(with: hourlyForecastView)
+                    hourlyForecastView.setup(for: self.storage.selectedDay.value)
+                
                     return cell
                 case .some(.infographic(.lineChart)):
                     let cell = collectionView.dequeueConfiguredReusableCell(using: infographicCellRegistration, for: indexPath, item: [])
-                    cell.container.subviews.forEach({ $0.removeFromSuperview() })
                     let lineGraphView = LineGraphForecastView()
                     lineGraphView.configure(day: self.storage.selectedDay.value)
-                    cell.container.addSubview(lineGraphView)
                     cell.configure(with: self.title(item: item), image: self.image(item: item))
-                    lineGraphView.snp.makeConstraints {
-                        $0.left.right.top.bottom.equalToSuperview()
-                    }
+                    cell.configure(with: lineGraphView)
+                    
                     return cell
                 case .some(.condition):
                     return nil
@@ -193,7 +182,6 @@ final class DetailsViewController: BaseChildController, RootViewGettable {
         guard let item else { return "" }
         
         switch item.type {
-
         case .condition(type: let type):
             return type.title
         case .infographic(type: let type):
@@ -272,13 +260,11 @@ final class DetailsViewController: BaseChildController, RootViewGettable {
     
     private func conditionCellRegistration() -> ConditionCellRegistration {
         return ConditionCellRegistration { cell, indexPath, itemIdentifier in
-            
         }
     }
     
     private func infographicCellRegistration() -> InfographicCellRegistration {
         return InfographicCellRegistration {cell, indexPath, itemIdentifier in
-            
         }
     }
 }

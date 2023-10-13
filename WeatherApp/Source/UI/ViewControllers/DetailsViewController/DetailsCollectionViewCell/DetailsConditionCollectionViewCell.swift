@@ -8,54 +8,24 @@
 import UIKit
 import SnapKit
 
-class DetailsConditionCollectionViewCell: UICollectionViewCell {
+final class DetailsConditionCollectionViewCell: BaseDetailsCollectionViewCell {
     
     // MARK: -
     // MARK: Variables
     
-    var mainStackView = UIStackView()
-    var titleStackView = UIStackView()
-    var titleImageBackground = UIView()
     var titleImageContainer = UIView()
-    var titleImage = UIImageView()
-    var titleLabel = UILabel()
-    var container = UIView()
     
     // MARK: -
-    // MARK: Init
+    // MARK: Private
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
-        self.setupUI()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-        self.setupUI()
-    }
-    
-    // MARK: -
-    // MARK: Public
-    
-    func setupUI() {
-        self.backgroundColor = Colors.cellBackgroundGreen.color
-        self.layer.cornerRadius = 18
-        self.titleLabel.font = Fonts.SFProDisplay.regular.font(size: 14)
-
-        self.titleImage.tintColor = .black
+    override func setupLayout() {
+        super.setupLayout()
         
         self.addViews()
         self.addConstraints()
     }
     
-    func configure(with title: String, image: String) {
-        self.titleLabel.text = title
-        self.titleImage.image = UIImage(systemName: image)
-    }
-    
-    func addViews() {
+    private func addViews() {
         self.mainStackView.axis = .horizontal
         self.titleStackView.axis = .vertical
         self.mainStackView.distribution = .fill
@@ -71,7 +41,7 @@ class DetailsConditionCollectionViewCell: UICollectionViewCell {
         self.titleStackView.addArrangedSubview(self.container)
     }
     
-    func addConstraints() {
+    private func addConstraints() {
         self.mainStackView.snp.makeConstraints {
             $0.left.right.equalToSuperview().inset(18)
             $0.top.bottom.equalToSuperview().inset(15)
@@ -85,25 +55,6 @@ class DetailsConditionCollectionViewCell: UICollectionViewCell {
         
         self.titleImage.snp.makeConstraints {
             $0.left.right.top.bottom.equalToSuperview().inset(6)
-        }
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        self.titleImageBackground.backgroundColor = .white
-        self.titleImageBackground.layer.cornerRadius = 14
-    }
-    
-    private func createSpacer() -> UIView {
-        let spacer = UIView()
-        
-        return spacer
-    }
-    
-    override func prepareForReuse() {
-        self.container.subviews.forEach {
-            $0.removeFromSuperview()
         }
     }
 }
