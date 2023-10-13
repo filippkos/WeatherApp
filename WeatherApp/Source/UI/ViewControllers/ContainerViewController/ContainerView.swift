@@ -61,7 +61,6 @@ final class ContainerView: UIView {
     func changeLabels() {
         UIView.animate(withDuration: 0.5) {
             self.temperatureLabel.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-       //     self.temperatureLabel.transform = CGAffineTransform(translationX: 10, y: 50)
             self.temperatureLabel.transform = CGAffineTransform(rotationAngle: 0)
          }
     }
