@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class BarChartView: UIView {
+class BarChartView: UIScrollView {
     
     // MARK: -
     // MARK: Variables
@@ -50,11 +50,13 @@ class BarChartView: UIView {
             let barView = BarView()
             let title = DateFormatter.custom(format: .time(withOnly: [.hours, .minutes])).string(from: TimeConverter.getDate(from: $0.dt))
             barView.configure(title: title, value: CGFloat($0.clouds.all))
+            
             self.stackView.addArrangedSubview(barView)
         }
         
         self.stackView.snp.makeConstraints {
             $0.left.right.top.bottom.equalToSuperview()
+            $0.width.equalToSuperview()
         }
     }
 }

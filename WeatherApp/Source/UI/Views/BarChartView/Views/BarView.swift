@@ -60,12 +60,11 @@ final class BarView: UIStackView {
         }
         
         self.barView.snp.makeConstraints {
-            
             $0.left.top.bottom.equalToSuperview()
-            
             let fullWidth = self.frame.size.width - 116
-            
             $0.width.equalTo(self.value * fullWidth)
+            
+            $0.height.equalTo(self.valueLabel.intrinsicContentSize.height)
         }
     }
     
