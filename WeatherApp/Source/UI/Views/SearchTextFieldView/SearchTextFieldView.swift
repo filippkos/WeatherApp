@@ -11,9 +11,15 @@ import SnapKit
 @IBDesignable
 final class SearchTextFieldView: UIView {
     
+    // MARK: -
+    // MARK: Variables
+    
     var textField = UITextField()
     var resultLabel = UILabel()
     var actionButton = UIButton()
+    
+    // MARK: -
+    // MARK: Init
     
     init() {
         super.init(frame: CGRect())
@@ -27,7 +33,10 @@ final class SearchTextFieldView: UIView {
         self.setup()
     }
     
-    func setup() {
+    // MARK: -
+    // MARK: Public
+    
+    public func setup() {
         self.backgroundColor = .clear
         self.setupTextField()
         self.setupButton()
@@ -35,12 +44,15 @@ final class SearchTextFieldView: UIView {
         self.addConstraints()
     }
     
-    func addViews() {
+    // MARK: -
+    // MARK: Private
+    
+    private func addViews() {
         self.addSubview(self.textField)
         self.addSubview(self.actionButton)
     }
     
-    func setupTextField() {
+    private func setupTextField() {
         self.textField.font = Fonts.SFProDisplay.regular.font(size: 22)
         self.textField.attributedPlaceholder = NSAttributedString(
             string: "",
@@ -48,12 +60,12 @@ final class SearchTextFieldView: UIView {
         )
     }
     
-    func setupButton() {
+    private func setupButton() {
         self.actionButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
         self.actionButton.titleLabel?.text = ""
     }
     
-    func addConstraints() {
+    private func addConstraints() {
         self.textField.snp.makeConstraints {
             $0.left.equalTo(16)
             $0.top.bottom.equalToSuperview()

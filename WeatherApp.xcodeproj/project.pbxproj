@@ -10,6 +10,8 @@
 		157020BF1CE3D248C6D2E389 /* Pods_WeatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77CCB734EB4AD5C59853FE61 /* Pods_WeatherApp.framework */; };
 		2241112A2AC472A70028BC97 /* ConditionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224111292AC472A70028BC97 /* ConditionView.swift */; };
 		224111452AD9429D0028BC97 /* BaseDetailsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224111442AD9429D0028BC97 /* BaseDetailsCollectionView.swift */; };
+		224111482AD972920028BC97 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224111472AD972920028BC97 /* BarChartView.swift */; };
+		2241114B2AD97D810028BC97 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2241114A2AD97D810028BC97 /* BarView.swift */; };
 		225CD88F2A8C067E00B9C209 /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225CD88E2A8C067E00B9C209 /* NibDesignable.swift */; };
 		225CD8902A8C0B5600B9C209 /* ForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220D7CA02A8BC6DB003A3AB3 /* ForecastCollectionViewCell.swift */; };
 		225CD8992A8E19C800B9C209 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225CD8972A8E19C800B9C209 /* ContainerViewController.swift */; };
@@ -81,6 +83,8 @@
 		220D7CA02A8BC6DB003A3AB3 /* ForecastCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastCollectionViewCell.swift; sourceTree = "<group>"; };
 		224111292AC472A70028BC97 /* ConditionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionView.swift; sourceTree = "<group>"; };
 		224111442AD9429D0028BC97 /* BaseDetailsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDetailsCollectionView.swift; sourceTree = "<group>"; };
+		224111472AD972920028BC97 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
+		2241114A2AD97D810028BC97 /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
 		225CD88E2A8C067E00B9C209 /* NibDesignable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibDesignable.swift; sourceTree = "<group>"; };
 		225CD8972A8E19C800B9C209 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		225CD8982A8E19C800B9C209 /* ContainerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContainerViewController.xib; sourceTree = "<group>"; };
@@ -178,6 +182,23 @@
 				224111292AC472A70028BC97 /* ConditionView.swift */,
 			);
 			path = ConditionView;
+			sourceTree = "<group>";
+		};
+		224111462AD970730028BC97 /* BarChartView */ = {
+			isa = PBXGroup;
+			children = (
+				224111492AD97D6C0028BC97 /* Views */,
+				224111472AD972920028BC97 /* BarChartView.swift */,
+			);
+			path = BarChartView;
+			sourceTree = "<group>";
+		};
+		224111492AD97D6C0028BC97 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2241114A2AD97D810028BC97 /* BarView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		225CD88D2A8C065800B9C209 /* Views */ = {
@@ -472,6 +493,7 @@
 		22B80CA22A6EAAAB006DE713 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				224111462AD970730028BC97 /* BarChartView */,
 				22AC4D122A8A830100341E0B /* SearchTextFieldView */,
 				224111282AC472830028BC97 /* ConditionView */,
 				22AFBB272A9D23DC0001D463 /* LineGraphForecastView */,
@@ -686,6 +708,7 @@
 				22B80CAF2A7273EB006DE713 /* TemperatureConverter.swift in Sources */,
 				22A4D0AF2A4324F000A06E4F /* ServerConstants.swift in Sources */,
 				22B743FE2AC379040072D9C3 /* DetailsConditionCollectionViewCell.swift in Sources */,
+				2241114B2AD97D810028BC97 /* BarView.swift in Sources */,
 				22A4D09B2A41AE5A00A06E4F /* UViewController+ViewCast.swift in Sources */,
 				22B80CAD2A711976006DE713 /* DateFormatter+Extensions.swift in Sources */,
 				22AFBB322A9DFBB30001D463 /* XAxisView.swift in Sources */,
@@ -705,6 +728,7 @@
 				225CD8902A8C0B5600B9C209 /* ForecastCollectionViewCell.swift in Sources */,
 				22B80CA72A6EAED2006DE713 /* CollectionView+ReusableCell.swift in Sources */,
 				22AC4D162A8A83EE00341E0B /* SearchTextFieldView.swift in Sources */,
+				224111482AD972920028BC97 /* BarChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,14 +22,14 @@ public enum L10n {
     public static let tomorrow = L10n.tr("Localizable", "container_view.tomorrow", fallback: "Tomorrow")
   }
   public enum DetailsView {
-    /// Chance of rain
-    public static let chanceOfRainDiagramTitle = L10n.tr("Localizable", "details_view.chance_of_rain_diagram_title", fallback: "Chance of rain")
+    /// Cloudiness
+    public static let cloudinessDiagramTitle = L10n.tr("Localizable", "details_view.cloudiness_diagram_title", fallback: "Cloudiness")
     /// Hourly forecast
     public static let hourlyForecastTitle = L10n.tr("Localizable", "details_view.hourly_forecast_title", fallback: "Hourly forecast")
     /// Humidity
     public static let humidityTitle = L10n.tr("Localizable", "details_view.humidity_title", fallback: "Humidity")
-    /// Hourly Forecast Line Chart
-    public static let lineChartTitle = L10n.tr("Localizable", "details_view.line_chart_title", fallback: "Hourly Forecast Line Chart")
+    /// Hourly forecast line chart
+    public static let lineChartTitle = L10n.tr("Localizable", "details_view.line_chart_title", fallback: "Hourly forecast line chart")
     /// Pressure
     public static let pressureTitle = L10n.tr("Localizable", "details_view.pressure_title", fallback: "Pressure")
     /// Rain volume

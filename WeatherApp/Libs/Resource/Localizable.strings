@@ -18,8 +18,8 @@
 "details_view.pressure_title" = "Pressure";
 "details_view.humidity_title" = "Humidity";
 "details_view.hourly_forecast_title" = "Hourly forecast";
-"details_view.line_chart_title" = "Hourly Forecast Line Chart";
-"details_view.chance_of_rain_diagram_title" = "Chance of rain";
+"details_view.line_chart_title" = "Hourly forecast line chart";
+"details_view.cloudiness_diagram_title" = "Cloudiness";
 
 
 

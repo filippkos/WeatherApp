@@ -10,15 +10,20 @@ import SnapKit
 
 final class YAxisView: UIView {
     
+    // MARK: -
+    // MARK: Variables
+    
     private let stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.distribution = .fillEqually
-
         return stack
     }()
     
-    func configure(data: [String]) {
+    // MARK: -
+    // MARK: Public
+    
+    public func configure(data: [String]) {
         self.addSubview(self.stackView)
         self.stackView.subviews.forEach {
             $0.removeFromSuperview()
@@ -33,6 +38,9 @@ final class YAxisView: UIView {
             $0.left.right.equalToSuperview().inset(5)
         }
     }
+    
+    // MARK: -
+    // MARK: Private
     
     private func markLabel(text: String) -> UILabel {
         let label = UILabel()

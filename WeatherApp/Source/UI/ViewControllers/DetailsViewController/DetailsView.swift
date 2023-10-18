@@ -37,7 +37,8 @@ final class DetailsView: BaseChildView {
         ]))
         self.sections.append(DetailsSection(type: .infographics, items: [
             DetailsItem(type: .infographic(type: .hourlyForecast)),
-            DetailsItem(type: .infographic(type: .lineChart))
+            DetailsItem(type: .infographic(type: .lineChart)),
+            DetailsItem(type: .infographic(type: .barChart))
         ]))
     }
     
