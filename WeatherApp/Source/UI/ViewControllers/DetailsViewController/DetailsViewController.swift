@@ -75,6 +75,7 @@ enum ItemType: Hashable {
     enum InfographicItemType: CaseIterable {
         case hourlyForecast
         case lineChart
+        case barChart
         
         typealias Loc = L10n.DetailsView
         
@@ -84,6 +85,8 @@ enum ItemType: Hashable {
                 return Loc.hourlyForecastTitle
             case .lineChart:
                 return Loc.lineChartTitle
+            case .barChart:
+                return Loc.cloudinessDiagramTitle
             }
         }
         
@@ -93,6 +96,8 @@ enum ItemType: Hashable {
                 return "clock"
             case .lineChart:
                 return "chart.line.uptrend.xyaxis"
+            case .barChart:
+                return "icloud"
             }
         }
     }
@@ -167,10 +172,19 @@ final class DetailsViewController: BaseChildController, RootViewGettable {
                     cell.configure(with: lineGraphView)
                     
                     return cell
+                case .some(.infographic(type: .barChart)):
+                    let cell = collectionView.dequeueConfiguredReusableCell(using: infographicCellRegistration, for: indexPath, item: [])
+                    let barChartView = BarChartView()
+                    barChartView.configure(data: self.storage.selectedDay.value)
+                    cell.configure(with: self.title(item: item), image: self.image(item: item))
+                    cell.configure(with: barChartView)
+                    
+                    return cell
                 case .some(.condition):
                     return nil
                 case .none:
                     return nil
+
                 }
             case .none:
                 return nil

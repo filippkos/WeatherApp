@@ -10,6 +10,9 @@ import SnapKit
 
 final class GridView: UIView {
     
+    // MARK: -
+    // MARK: Variables
+    
     var data: [Double] = []
     var min: Double = 0
     var max: Double = 0
@@ -22,6 +25,9 @@ final class GridView: UIView {
         
         return stack
     }()
+    
+    // MARK: -
+    // MARK: Public
     
     func configure(data: [Double], min: Double, max: Double, num: Int) {
         
@@ -45,6 +51,9 @@ final class GridView: UIView {
             $0.left.right.top.bottom.equalToSuperview()
         }
     }
+    
+    // MARK: -
+    // MARK: Private
     
     private func horizontalGridLine() -> UIView {
         let container = UIView()
@@ -185,6 +194,9 @@ final class GridView: UIView {
         
         return Double(counter * 10)
     }
+    
+    // MARK: -
+    // MARK: Overrided
     
     override func draw(_ rect: CGRect) {
         guard self.data.count != 0 else {

@@ -11,6 +11,9 @@ import SnapKit
 @IBDesignable
 final class LineGraphForecastView: UIView {
     
+    // MARK: -
+    // MARK: Variables
+    
     private let xAxisView = XAxisView()
     private let yAxisView = YAxisView()
     private let gridView = GridView()
@@ -18,6 +21,9 @@ final class LineGraphForecastView: UIView {
     private var topStack = UIStackView()
     private var bottomStack = UIStackView()
     private let spacer = UIView()
+    
+    // MARK: -
+    // MARK: Init
 
     init() {
         super.init(frame: CGRect())
@@ -31,11 +37,14 @@ final class LineGraphForecastView: UIView {
         self.setup()
     }
     
-    func setup() {
+    // MARK: -
+    // MARK: Public
+    
+    public func setup() {
         self.prepareView()
     }
     
-    func configure(day: [Period]) {
+    public func configure(day: [Period]) {
 
         let temps = day.map { TemperatureConverter.roundedDoubleCelsius(from: $0.main.temp) }
         
@@ -61,7 +70,10 @@ final class LineGraphForecastView: UIView {
         self.xAxisView.configure(data: xAxisData)
     }
     
-    func prepareView() {
+    // MARK: -
+    // MARK: Private
+    
+    private func prepareView() {
         self.topStack = UIStackView(arrangedSubviews: [self.yAxisView, self.gridView])
         self.bottomStack = UIStackView(arrangedSubviews: [self.spacer, self.xAxisView])
         self.mainStack = UIStackView(arrangedSubviews: [self.topStack, self.bottomStack])
