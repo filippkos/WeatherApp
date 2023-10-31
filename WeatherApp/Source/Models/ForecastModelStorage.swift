@@ -43,8 +43,8 @@ class ForecastModelStorage {
         }
     }
     
-    func selectedDate() -> String {
-        return TimeConverter.getStringDate(from: self.selectedDay.value.first?.dt ?? 0)
+    func selectedDate() -> Date {
+        return TimeConverter.getDate(from: self.selectedDay.value.first?.dt ?? 0)
     }
     
     func currentDate() -> String {
@@ -64,7 +64,7 @@ class ForecastModelStorage {
     
     private func getTodayPeriodsCount() -> Int {
         let date = NSDate(timeIntervalSince1970: TimeInterval(self.list.value.first?.dt ?? 0))
-        let hours = DateFormatter.custom(format: .time(withOnly: .hours)).string(from: date as Date)
+        let hours = DateFormatter.custom(format: .time(withOnly: .hours), timeZone: .gmt).string(from: date as Date)
         
         return (24 - (Int(hours) ?? 0)) / 3
     }

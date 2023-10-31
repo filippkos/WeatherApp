@@ -48,7 +48,7 @@ class BarChartView: UIScrollView {
         
         data.forEach {
             let barView = BarView()
-            let title = DateFormatter.custom(format: .time(withOnly: [.hours, .minutes])).string(from: TimeConverter.getDate(from: $0.dt))
+            let title = DateFormatter.custom(format: .time(withOnly: [.hours, .minutes]), timeZone: .gmt).string(from: TimeConverter.getDate(from: $0.dt))
             barView.configure(title: title, value: CGFloat($0.clouds.all))
             
             self.stackView.addArrangedSubview(barView)

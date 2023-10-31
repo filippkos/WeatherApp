@@ -45,7 +45,7 @@ final class NetworkManager: NetworkSessionProcessable {
                 if let res = response as? HTTPURLResponse {
                     debugPrint("Downloaded data with response code \(res.statusCode)")
                     if let data = data {
-                            completion(.success(data))
+                        completion(.success(data))
                     } else {
                         if let error = error {
                             completion(.failure(error))

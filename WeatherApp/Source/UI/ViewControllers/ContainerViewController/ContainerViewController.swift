@@ -29,6 +29,7 @@ final class ContainerViewController: BaseParentController, RootViewGettable, UIT
 
         self.rootView?.textFieldView.textField.delegate = self
         self.storage.forecast(cityID: "3874930") { model in
+            
             DispatchQueue.main.async {
                 self.rootView?.configureDefault(cityName: model.city.name, selectedDay: self.storage.currentDay)
                 self.castedChildren.forEach {
@@ -54,15 +55,21 @@ final class ContainerViewController: BaseParentController, RootViewGettable, UIT
     
     override func updateButtonsState() {
         super.updateButtonsState()
-        
+
         self.rootView?.buttons.forEach {
             $0.backgroundColor = .white
         }
         
-        if type(of: self.rootView?.contentView.subviews.first ?? UIView()) === DetailsView.self {
-            if self.storage.selectedDate() == self.storage.currentDate() {
+        var calendar = Calendar.current
+        
+        guard let view = self.rootView?.contentView.subviews.first else {
+            return
+        }
+        
+        if type(of: view) === DetailsView.self {
+            if calendar.isDateInToday(self.storage.selectedDate()) {
                 self.rootView?.todayButton.backgroundColor = Colors.cellBackgroundGreen.color
-            } else if self.storage.selectedDate() == self.storage.tomorrowDate() {
+            } else if calendar.isDateInTomorrow(self.storage.selectedDate()) {
                 self.rootView?.tomorrowButton.backgroundColor = Colors.cellBackgroundGreen.color
             } else {
                 return
@@ -107,7 +114,7 @@ final class ContainerViewController: BaseParentController, RootViewGettable, UIT
             .rx
             .tap
             .bind { [weak self] in
-                self?.storage.selectedDay.accept(self?.storage.days[0] ?? [] )
+                self?.storage.selectedDay.accept(self?.storage.days.first ?? [] )
                 self?.showChildController(.details)
                 self?.updateButtonsState()
             }
@@ -117,7 +124,7 @@ final class ContainerViewController: BaseParentController, RootViewGettable, UIT
             .rx
             .tap
             .bind { [weak self] in
-                self?.storage.selectedDay.accept(self?.storage.days[1] ?? [])
+                self?.storage.selectedDay.accept(self?.storage.days.dropFirst().first ?? [])
                 self?.showChildController(.details)
                 self?.updateButtonsState()
             }

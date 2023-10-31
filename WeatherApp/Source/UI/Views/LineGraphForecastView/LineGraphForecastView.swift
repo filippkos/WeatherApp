@@ -65,7 +65,7 @@ final class LineGraphForecastView: UIView {
         self.gridView.configure(data: temps, min: roundedMinTemp, max: roundedMaxTemp, num: yAxisData.count - 1)
         
         let xAxisData = day.map {
-            DateFormatter.custom(format: .time(withOnly: [.hours, .minutes])).string(from: TimeConverter.getDate(from: $0.dt))
+            DateFormatter.custom(format: .time(withOnly: [.hours, .minutes]), timeZone: .gmt).string(from: TimeConverter.getDate(from: $0.dt))
         }
         self.xAxisView.configure(data: xAxisData)
     }
