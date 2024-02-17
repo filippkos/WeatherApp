@@ -28,7 +28,7 @@ final class ContainerViewController: BaseParentController, RootViewGettable, UIT
         super.viewDidLoad()
 
         self.rootView?.textFieldView.textField.delegate = self
-        self.storage.forecast(cityID: "3874930") { model in
+        self.storage.forecast(cityName: "London") { model in
             
             DispatchQueue.main.async {
                 self.rootView?.configureDefault(cityName: model.city.name, selectedDay: self.storage.currentDay)
@@ -86,20 +86,15 @@ final class ContainerViewController: BaseParentController, RootViewGettable, UIT
             .tap
             .bind { [weak self] in
                 let requestText = self?.rootView?.textFieldView.textField.text
-                if  requestText != "" {
-                    let id = self?.getCityID(cityName: requestText ?? "") ?? ""
-                    if id != "" {
-                        self?.storage.city = self?.rootView?.textFieldView.textField.text ?? ""
-                        self?.storage.forecast(cityID: id) { model in
-                            DispatchQueue.main.async {
-                                self?.rootView?.configureDefault(cityName: model.city.name, selectedDay: self?.storage.currentDay ?? [])
-                                self?.castedChildren.forEach {
-                                    ($0.view as! BaseChildView).collectionView.reloadData()
-                                }
+                if requestText != "" {
+                    self?.storage.city = self?.rootView?.textFieldView.textField.text ?? ""
+                    self?.storage.forecast(cityName: requestText ?? "") { model in
+                        DispatchQueue.main.async {
+                            self?.rootView?.configureDefault(cityName: model.city.name, selectedDay: self?.storage.currentDay ?? [])
+                            self?.castedChildren.forEach {
+                                ($0.view as! BaseChildView).collectionView.reloadData()
                             }
                         }
-                    } else {
-                        print("wrong city name")
                     }
                 } else {
                     print("empty search text")
@@ -144,33 +139,6 @@ final class ContainerViewController: BaseParentController, RootViewGettable, UIT
         let params = ["id" : id, "appid" : "83b161664a26ce94b708c5723c38496c"]
         
         return NetworkRequestModel(requestType: .forecast, params: params, httpMethod: .get)
-    }
-    
-    func getCityID(cityName: String) -> String {
-        var result = ""
-        
-        cityList()?.forEach {
-            if $0.name.lowercased() == cityName.lowercased() {
-                result = $0.id.description
-            }
-        }
-        
-        return result
-    }
-    
-    func cityList() -> CityList? {
-        guard let path = Bundle.main.url(forResource: "CityList", withExtension: "json") else {
-            return nil
-        }
-        do {
-            let data = try Data(contentsOf: path)
-            let result = try JSONDecoder().decode(CityList.self, from: data)
-            return result
-        } catch {
-            print(error)
-        }
-        
-        return nil
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

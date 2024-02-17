@@ -28,8 +28,8 @@ class ForecastModelStorage {
     // MARK: -
     // MARK: Public
     
-    func forecast(cityID: String, completion: @escaping F.VoidFunc<ForecastModel>) {
-        NetworkManager.task(requestModel: self.prepareRequestModel(id: cityID)) { [weak self] (result: Result<ForecastModel, Error>) in
+    func forecast(cityName: String, completion: @escaping F.VoidFunc<ForecastModel>) {
+        NetworkManager.task(requestModel: self.prepareRequestModel(name: cityName)) { [weak self] (result: Result<ForecastModel, Error>) in
             switch result {
             case .success(let model):
                 self?.list.accept(model.list)
@@ -56,8 +56,8 @@ class ForecastModelStorage {
         return TimeConverter.getStringDate(from: Int(date?.timeIntervalSince1970 ?? 0))
     }
     
-    private func prepareRequestModel(id: String) -> NetworkRequestModel {
-        let params = ["id" : id, "appid" : "83b161664a26ce94b708c5723c38496c"]
+    private func prepareRequestModel(name: String) -> NetworkRequestModel {
+        let params = ["q" : name, "appid" : "83b161664a26ce94b708c5723c38496c"]
         
         return NetworkRequestModel(requestType: .forecast, params: params, httpMethod: .get)
     }
